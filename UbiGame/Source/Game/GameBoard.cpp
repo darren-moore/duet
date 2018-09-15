@@ -26,6 +26,7 @@ GameBoard::GameBoard() {
 
 	GameEngine::Entity* rend = new GameEngine::Entity();
 	Game::StaffRenderComponent* renderComponent = static_cast<Game::StaffRenderComponent*>(rend->AddComponent<Game::StaffRenderComponent>());
+	renderComponent->SetZLevel(1);
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(rend);
 
 	int position = 0;

@@ -65,6 +65,6 @@ void Controller::generateParticle() {
 	fill->SetSize(sf::Vector2f(1280.f, 720.f));
 	// Set the lifetime for the fill to dissapear after 100 milliseconds
 	GameEngine::ParticleComponent* part = static_cast<GameEngine::ParticleComponent*>(fill->AddComponent<GameEngine::ParticleComponent>());
-	part->SetLifeTime(0.1);
+	part->SetLifeTime(0.1f);
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(fill);
 }

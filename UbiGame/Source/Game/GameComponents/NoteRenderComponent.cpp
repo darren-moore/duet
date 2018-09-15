@@ -4,7 +4,7 @@
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Graphics.hpp>
 
-using namespace GameEngine;
+using namespace Game;
 
 
 void NoteRenderComponent::Render(sf::RenderTarget* target) {
@@ -70,6 +70,10 @@ void NoteRenderComponent::renderStem(sf::RenderTarget* target) {
 	else {
 		stemBase.x -= GetEntity()->GetSize().x / 2;
 		rect.setPosition(stemBase);
+	}
+
+	if (m_note->stemType == Note::eStemType::start) {
+		
 	}
 
 	rect.setSize(sf::Vector2f(2.f, m_stemHeight));

@@ -154,6 +154,7 @@
     <ClCompile Include="Source\GameEngine\Util\CollisionManager.cpp" />
     <ClCompile Include="Source\GameEngine\Util\SoundManager.cpp" />
     <ClCompile Include="Source\Game\GameComponents\RhythmLogicComponent.cpp" />
+    <ClCompile Include="Source\Game\GameComponents\StaffRenderComponent.cpp" />
     <ClCompile Include="Source\Game\GameEntities\Controller.cpp" />
     <ClCompile Include="Source\Game\GameEntities\ObstacleEntity.cpp" />
     <ClCompile Include="Source\Game\GameComponents\PlayerMovementComponent.cpp" />
@@ -185,6 +186,7 @@
     <ClInclude Include="Source\GameEngine\Util\CollisionManager.h" />
     <ClInclude Include="Source\GameEngine\Util\SoundManager.h" />
     <ClInclude Include="Source\Game\GameComponents\RhythmLogicComponent.h" />
+    <ClInclude Include="Source\Game\GameComponents\StaffRenderComponent.h" />
     <ClInclude Include="Source\Game\GameEntities\Controller.h" />
     <ClInclude Include="Source\Game\GameEntities\ObstacleEntity.h" />
     <ClInclude Include="Source\Game\GameComponents\PlayerMovementComponent.h" />

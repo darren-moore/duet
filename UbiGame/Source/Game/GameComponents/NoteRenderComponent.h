@@ -2,8 +2,8 @@
 #include "GameEngine/EntitySystem/Components/SpriteRenderComponent.h"
 #include "../Util/Note.h"
 
-namespace GameEngine {
-	class NoteRenderComponent : public SpriteRenderComponent {
+namespace Game {
+	class NoteRenderComponent : public GameEngine::SpriteRenderComponent {
 	public:
 		enum eStemType { none, start, middle, end };
 		enum eNoteLength { whole, half, quarter, eighth, sixteenth };

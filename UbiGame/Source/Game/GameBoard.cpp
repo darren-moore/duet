@@ -4,6 +4,7 @@
 #include "GameEngine\EntitySystem\Components\CollidableComponent.h"
 #include "GameEngine\EntitySystem\Components\SpriteRenderComponent.h"
 #include "Game/GameComponents/NoteRenderComponent.h"
+#include "Game/GameComponents/StaffRenderComponent.h"
 #include "GameEngine\Util\CameraManager.h"
 #include "Game/Util/Note.h"
 #include <vector>
@@ -22,22 +23,26 @@ GameBoard::GameBoard()
 	: m_backGround(nullptr)
 {
 
-	std::vector<Note*> notes = GameEngine::MusicManager::parseMusic("2 2 3 4 3");
+	std::vector<Note*> notes = GameEngine::MusicManager::parseMusic("1 1 2 2 3 4 3");
 	std::vector<float> beats = GameEngine::MusicManager::convertNotesToBeatTimes(notes, 60);
+
+	GameEngine::Entity* rend = new GameEngine::Entity();
+	Game::StaffRenderComponent* renderComponent = static_cast<Game::StaffRenderComponent*>(rend->AddComponent<Game::StaffRenderComponent>());
+	GameEngine::GameEngineMain::GetInstance()->AddEntity(rend);
 
 	int position = 0;
 	for (auto n : notes) {
 		GameEngine::Entity* e = new GameEngine::Entity();
-		GameEngine::NoteRenderComponent* renderComponent = static_cast<GameEngine::NoteRenderComponent*>(e->AddComponent<GameEngine::NoteRenderComponent>());
+		Game::NoteRenderComponent* renderComponent = static_cast<Game::NoteRenderComponent*>(e->AddComponent<Game::NoteRenderComponent>());
 		renderComponent->SetTexture(GameEngine::eTexture::Note);
 		renderComponent->SetZLevel(2);
 
 		renderComponent->setNote(n);
-		position += n->noteLength * 16 / 2;
+		position += n->noteLength * 40 / 2;
 		e->SetPos(sf::Vector2f(position, 100));
 		e->SetSize(sf::Vector2f(30, 30));
 		GameEngine::GameEngineMain::GetInstance()->AddEntity(e);
-		position += n->noteLength * 16 / 2;
+		position += n->noteLength * 40 / 2;
 	}
 
 	// Controller Entity

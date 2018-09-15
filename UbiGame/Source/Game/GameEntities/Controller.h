@@ -4,12 +4,15 @@
 #include "../Util/Common.h"
 
 class LogicComponent;
+class Ticker;
 
 class Controller : public GameEngine::Entity {
 
 public:
-	Controller(eGameMode mode = eGameMode::rhythm);
+	Controller(Ticker * ticker, eGameMode mode = eGameMode::rhythm);
 	~Controller();
+
+	inline LogicComponent * getLogicComponent() const { return m_logic; }
 
 	void Update() override;
 

@@ -3,6 +3,8 @@
 #include "GameEngine/EntitySystem/Entity.h"
 #include "GameEngine/Util/SoundManager.h"
 
+#define NUM_BEATS_IN_BAR 4
+
 class Ticker : public GameEngine::Entity {
 
 public:
@@ -13,10 +15,12 @@ public:
 	void OnRemoveFromWorld() override;
 
 	void Update() override;
+
+	float getCurrentBarTick() const;
 private:
 	int m_bpm;
 	GameEngine::SoundManager * m_soundManager;
-	float timer, step, goal;
+	float timer, step;
 
 	bool m_playing;
 };

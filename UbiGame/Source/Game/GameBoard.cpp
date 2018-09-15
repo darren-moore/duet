@@ -26,6 +26,7 @@ GameBoard::GameBoard() {
 
 	GameEngine::Entity* rend = new GameEngine::Entity();
 	Game::StaffRenderComponent* renderComponent = static_cast<Game::StaffRenderComponent*>(rend->AddComponent<Game::StaffRenderComponent>());
+	renderComponent->SetZLevel(1);
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(rend);
 
 	std::vector<GameEngine::Entity*> noteEntities = GameEngine::MusicManager::prepareNoteEntities(notes, sf::Vector2f(640, 200));
@@ -35,13 +36,13 @@ GameBoard::GameBoard() {
 
 	GameEngine::MusicManager::moveNoteEntities(noteEntities, sf::Vector2f(0, 200));
 
-	// Controller Entity
-	GameEngine::Entity * controller = new Controller();
-	GameEngine::GameEngineMain::GetInstance()->AddEntity(controller);
-
 	// Ticker Entity
-	GameEngine::Entity * ticker = new Ticker();
+	Ticker * ticker = new Ticker();
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(ticker);
+
+	// Controller Entity
+	Controller * controller = new Controller(ticker);
+	GameEngine::GameEngineMain::GetInstance()->AddEntity(controller);
 
 	// Background Entity
 	CreateBackground();

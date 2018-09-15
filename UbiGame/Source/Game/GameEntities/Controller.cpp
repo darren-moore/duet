@@ -9,13 +9,15 @@
 
 #include <iostream>
 
-Controller::Controller(eGameMode mode) {
+Controller::Controller(Ticker * ticker, eGameMode mode) {
 	switch (mode) {
 	case eGameMode::rhythm: {
 		m_logic = static_cast<LogicComponent*>(AddComponent<RhythmLogicComponent>());
+		m_logic->setTicker(ticker);
 	} break;
 	case eGameMode::dual: {
 		m_logic = static_cast<LogicComponent*>(AddComponent<DualLogicComponent>());
+		m_logic->setTicker(ticker);
 	} break;
 	default: {
 		// Technically never supposed to happen
@@ -65,6 +67,6 @@ void Controller::generateParticle() {
 	fill->SetSize(sf::Vector2f(1280.f, 720.f));
 	// Set the lifetime for the fill to dissapear after 100 milliseconds
 	GameEngine::ParticleComponent* part = static_cast<GameEngine::ParticleComponent*>(fill->AddComponent<GameEngine::ParticleComponent>());
-	part->SetLifeTime(0.1);
+	part->SetLifeTime(0.1f);
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(fill);
 }

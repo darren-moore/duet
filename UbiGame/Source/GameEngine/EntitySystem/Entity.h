@@ -47,6 +47,8 @@ namespace GameEngine
 			newComponent->SetEntity(this);
 			m_components.push_back(newComponent);
 			
+			newComponent->OnAddToWorld();
+
 			return newComponent;
 		}
 

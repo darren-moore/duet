@@ -47,7 +47,6 @@ vector<Note*> MusicManager::parseMusic(std::string musicString) {
 
 void MusicManager::assignStemTypes(vector<Note*> notes) {
 	int endCheck = 0;
-	int preStem = NULL;
 
 	int beatCounter = 0;
 
@@ -127,7 +126,7 @@ vector<float> MusicManager::convertNotesToBeatTimes(vector<Note*> notes, int bpm
 
 
 vector<Entity*> MusicManager::prepareNoteEntities(vector<Note*> notes, sf::Vector2f initPos) {
-	int position = initPos.x;
+	int position = (int)initPos.x;
 	vector<Entity*> noteEntities;
 	for (auto n : notes) {
 		GameEngine::Entity* e = new GameEngine::Entity();
@@ -137,7 +136,7 @@ vector<Entity*> MusicManager::prepareNoteEntities(vector<Note*> notes, sf::Vecto
 
 		renderComponent->setNote(n);
 		position += n->noteLength * 40 / 2;
-		e->SetPos(sf::Vector2f(position, initPos.y));
+		e->SetPos(sf::Vector2f((float)position, initPos.y));
 		e->SetSize(sf::Vector2f(30, 30));
 		noteEntities.push_back(e);
 
@@ -148,11 +147,11 @@ vector<Entity*> MusicManager::prepareNoteEntities(vector<Note*> notes, sf::Vecto
 }
 
 void MusicManager::moveNoteEntities(vector<Entity*> entities, sf::Vector2f pos) {
-	int position = pos.x;
+	int position = (int)pos.x;
 	for (auto e : entities) {
 		Note* note = e->GetComponent<Game::NoteRenderComponent>()->getNote();
 		position += note->noteLength * 40 / 2;
-		e->SetPos(sf::Vector2f(position, pos.y));
+		e->SetPos(sf::Vector2f((float)position, pos.y));
 		e->SetSize(sf::Vector2f(30, 30));
 		position += note->noteLength * 40 / 2;
 	}

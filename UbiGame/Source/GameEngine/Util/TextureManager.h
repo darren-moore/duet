@@ -12,7 +12,7 @@ namespace GameEngine
 		{
 			None = -1,
 			Player = 0,
-			Tileset,
+			Highlight,
 			BG,
 			TapParticle,
 			Note,
@@ -24,11 +24,11 @@ namespace GameEngine
 	{
 		switch (texture)
 		{
-		case eTexture::Player:    return "player.png";
-		case eTexture::Tileset:   return "tileset.png";
-		case eTexture::BG:		  return "bg.png";
+		case eTexture::Player:		return "player.png";
+		case eTexture::Highlight:	return "highlight.png";
+		case eTexture::BG:			return "bg.png";
 		case eTexture::TapParticle: return "TapParticle.png";
-		case eTexture::Note:	  return "note.png";
+		case eTexture::Note:		return "note.png";
 		default:       return "UnknownTexType";
 		}
 	}
@@ -58,12 +58,12 @@ namespace TextureHelper
 	{
 		switch (texture)
 		{
-		case  GameEngine::eTexture::Player:  return sf::Vector2f(32.f, 32.f);
-		case  GameEngine::eTexture::Tileset: return sf::Vector2f(32.f, 32.f);
-		case  GameEngine::eTexture::BG:	     return sf::Vector2f(1280.f, 720.f);
-		case  GameEngine::eTexture::TapParticle: return sf::Vector2f(1280.f, 720.f);
-		case  GameEngine::eTexture::Note:	 return sf::Vector2f(32.f, 32.f);
-		default:							 return sf::Vector2f(-1.f, -1.f);
+		case  GameEngine::eTexture::Player:		return sf::Vector2f(32.f, 32.f);
+		case  GameEngine::eTexture::Highlight:	return sf::Vector2f(640.f, 180.f);
+		case  GameEngine::eTexture::BG:			return sf::Vector2f(1280.f, 720.f);
+		case  GameEngine::eTexture::TapParticle:return sf::Vector2f(1280.f, 720.f);
+		case  GameEngine::eTexture::Note:		return sf::Vector2f(32.f, 32.f);
+		default:								return sf::Vector2f(-1.f, -1.f);
 		}
 	}
 }

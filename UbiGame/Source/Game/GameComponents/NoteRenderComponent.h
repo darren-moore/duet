@@ -13,7 +13,7 @@ namespace Game {
 
 	private:
 		Note* m_note;
-		int m_stemHeight = 75;
+		float m_stemHeight = 75.f;
 
 		void renderNote(sf::RenderTarget* target);
 		void renderStem(sf::RenderTarget* target);

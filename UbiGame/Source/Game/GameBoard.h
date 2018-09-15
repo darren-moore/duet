@@ -19,14 +19,8 @@ namespace Game
 		// Temp - needed to match Game Engine interface
 		bool IsGameOver() const { return false; }
 
-	protected:
-		// Placeholder temp - should go to helpers or smth.
-		float RandomFloatRange(float a, float b)
-		{
-			return ((b - a) * ((float)rand() / RAND_MAX)) + a;
-		}
-
-		GameEngine::Entity* m_backGround;
+	private:
+		void CreateBackground();
 	};
 }
 

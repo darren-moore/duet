@@ -1,6 +1,6 @@
 #pragma once
 #include "GameEngine/EntitySystem/Components/SpriteRenderComponent.h"
-#include "Game/Util/Note.h"
+#include "../Util/Note.h"
 
 namespace GameEngine {
 	class NoteRenderComponent : public SpriteRenderComponent {

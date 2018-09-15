@@ -5,8 +5,6 @@
 namespace Game {
 	class NoteRenderComponent : public GameEngine::SpriteRenderComponent {
 	public:
-		enum eStemType { none, start, middle, end };
-		enum eNoteLength { whole, half, quarter, eighth, sixteenth };
 
 		void Render(sf::RenderTarget* target);
 		void setNote(Note* note) { m_note = note; }

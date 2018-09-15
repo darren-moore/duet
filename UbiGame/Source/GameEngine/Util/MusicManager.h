@@ -13,6 +13,7 @@ namespace GameEngine {
 		static std::vector<float> convertNotesToBeatTimes(std::vector<Note*> notes, int bpm);
 		static std::vector<Entity*> prepareNoteEntities(std::vector<Note*> notes, sf::Vector2f initPos);
 		static void MusicManager::moveNoteEntities(std::vector<Entity*> entities, sf::Vector2f pos);
+		static void assignStemTypes(std::vector<Note*> notes);
 	};
 
 }

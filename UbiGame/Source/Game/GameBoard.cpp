@@ -24,7 +24,7 @@ using namespace Game;
 
 GameBoard::GameBoard() {
 
-	std::vector<Note*> notes = GameEngine::MusicManager::parseMusic("1 1 2 2 3 4 3");
+	std::vector<Note*> notes = GameEngine::MusicManager::parseMusic("_2 1 1 1 1 2 _1 1 1 1 2 2");
 	std::vector<float> beats = GameEngine::MusicManager::convertNotesToBeatTimes(notes, 60);
 
 	GameEngine::Entity* rend = new GameEngine::Entity();
@@ -36,7 +36,7 @@ GameBoard::GameBoard() {
 	for (auto ne : noteEntities) {
 		ne->AddComponent<Game::VelocityComponent>();
 		ne->AddComponent<Game::AccelerationComponent>();
-		ne->GetComponent<Game::AccelerationComponent>()->acceleration = sf::Vector2f(0, 650);
+		ne->GetComponent<Game::AccelerationComponent>()->acceleration = sf::Vector2f(0, 0);
 		ne->AddComponent<Game::PhysicsIntegratorComponent>();
 		GameEngine::GameEngineMain::GetInstance()->AddEntity(ne);
 	}

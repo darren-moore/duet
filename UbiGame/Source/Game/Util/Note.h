@@ -2,7 +2,7 @@
 
 class Note{
 public:
-	enum eStemType { none, start, middle, end };
+	enum eStemType { none, start, halfStart, end, halfEnd };
 
 	Note(int noteLength, eStemType stemType, bool isStemUp, bool isRest) :
 		noteLength(noteLength),

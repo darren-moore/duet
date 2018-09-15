@@ -41,8 +41,69 @@ vector<Note*> MusicManager::parseMusic(std::string musicString) {
 		notes.push_back(n);
 	}
 
-
+	assignStemTypes(notes);
 	return notes;
+}
+
+void MusicManager::assignStemTypes(vector<Note*> notes) {
+	int endCheck = 0;
+	int preStem = NULL;
+
+	int beatCounter = 0;
+
+	for (int i = 0; i < notes.size(); i++) {
+		endCheck += notes[i]->noteLength;
+
+		if (notes[i]->noteLength >= 4) {
+			notes[i]->stemType = Note::eStemType::none;	
+			endCheck = endCheck % 4;
+		}
+		else {
+			if (endCheck == 4) {
+				if (i>0  && notes[i-1]->isRest) {
+					notes[i]->stemType = Note::eStemType::halfStart;
+				}
+				else if (i>0 && notes[i]->noteLength != notes[i - 1]->noteLength) {
+					if (notes[i]->noteLength != 2) {
+						notes[i]->stemType = Note::eStemType::halfEnd;
+					}
+					else {
+						notes[i]->stemType = Note::eStemType::end;
+					}
+				}
+				else {
+					notes[i]->stemType = Note::eStemType::none;
+				}
+
+				endCheck = 0;
+			}
+			else {
+				if (i<notes.size()-1 && notes[i + 1]->noteLength == 3 || notes[i]->noteLength == 3) {
+					notes[i]->stemType = Note::eStemType::halfStart;
+				}
+				else if (i<notes.size()-1 && notes[i + 1]->isRest) {
+					if (notes[i]->noteLength != 2) {
+						notes[i]->stemType = Note::eStemType::start;
+					}
+					else {
+						notes[i]->stemType = Note::eStemType::halfStart;
+					}
+				}
+				else if(i<notes.size()-1 && notes[i + 1]->noteLength != notes[i]->noteLength) {
+					if (notes[i]->noteLength == 1) {
+						notes[i]->stemType = Note::eStemType::none;
+					}
+					else {
+						notes[i]->stemType = Note::eStemType::halfStart;
+					}
+				
+				}
+				else {
+					notes[i]->stemType = Note::eStemType::start;
+				}
+			}
+		}
+	}
 }
 
 // Convert to beat times, starting at 0. The last element denotes the time of the end of the note.

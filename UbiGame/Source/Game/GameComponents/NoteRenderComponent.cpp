@@ -62,6 +62,7 @@ void NoteRenderComponent::renderRest(sf::RenderTarget* target) {
 void NoteRenderComponent::renderStem(sf::RenderTarget* target) {
 	sf::RectangleShape rect = sf::RectangleShape();
 	sf::Vector2f stemBase = GetEntity()->GetPos();
+
 	if (m_note->isStemUp) {
 		stemBase.x += GetEntity()->GetSize().x/2;
 		stemBase.y -= m_stemHeight;
@@ -71,19 +72,49 @@ void NoteRenderComponent::renderStem(sf::RenderTarget* target) {
 		stemBase.x -= GetEntity()->GetSize().x / 2;
 		rect.setPosition(stemBase);
 	}
+	rect.setSize(sf::Vector2f(4.f, m_stemHeight));
 
-	if (m_note->stemType == Note::eStemType::start) {
-		
+	sf::RectangleShape connectorRect = sf::RectangleShape();
+	sf::Vector2f connectorStart = stemBase;
+	sf::Vector2f connectorEnd = connectorStart;
+	
+	
+	float connectorLen = 40.f;
+	switch (m_note->stemType)
+	{
+	case Note::eStemType::none:
+		break;
+	case Note::eStemType::start:
+		connectorEnd = connectorStart + sf::Vector2f(connectorLen, 0);
+		break;
+	case Note::eStemType::halfStart:
+		connectorEnd = connectorStart + sf::Vector2f(connectorLen/2, 0);
+		break;
+	case Note::eStemType::end:
+		connectorEnd = connectorStart - sf::Vector2f(connectorLen, 0);
+		break;
+	case Note::eStemType::halfEnd:
+		connectorEnd = connectorStart - sf::Vector2f(connectorLen/2, 0);
+		break;
+	default:
+		break;
 	}
 
-	rect.setSize(sf::Vector2f(2.f, m_stemHeight));
 
+	connectorRect.setPosition(connectorStart);
+	connectorRect.setSize(sf::Vector2f(connectorEnd.x - connectorStart.x, 4.f));
 
 	sf::Color col = sf::Color(100, 50, 50);
 	col.b = 255;
 	rect.setFillColor(col);
+	connectorRect.setFillColor(col);
 
 	target->draw(rect);
+	target->draw(connectorRect);
+	if (m_note->noteLength == 1) {
+		connectorRect.setPosition(connectorStart + sf::Vector2f(0, 10));
+		target->draw(connectorRect);
+	}
 }
 
 

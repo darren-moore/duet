@@ -1,7 +1,6 @@
 #include "PlayerEntity.h"
 
 #include "Game/GameComponents/PlayerSoundComponent.h"
-#include "Game/GameComponents/PlayerCameraComponent.h"
 
 #include "GameEngine/EntitySystem/Components/CollidablePhysicsComponent.h"
 #include "GameEngine/EntitySystem/Components/ParticleEmitterComponent.h"
@@ -38,8 +37,6 @@ PlayerEntity::PlayerEntity()
 												 
 	AddComponent<PlayerSoundComponent>();
 
-	//Camera control
-	AddComponent<PlayerCameraComponent>();
 }
 
  

@@ -139,8 +139,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source\GameEngine\Util\MusicManager.cpp" />
+    <ClCompile Include="Source\Game\GameComponents\DualLogicComponent.cpp" />
+    <ClCompile Include="Source\Game\GameComponents\LogicComponent.cpp" />
     <ClCompile Include="Source\Game\GameComponents\NoteRenderComponent.cpp" />
-    <ClCompile Include="Source\Game\GameComponents\PlayerCameraComponent.cpp" />
     <ClCompile Include="Source\GameEngine\Util\CameraManager.cpp" />
     <ClCompile Include="Source\Game\GameComponents\PlayerSoundComponent.cpp" />
     <ClCompile Include="Source\GameEngine\EntitySystem\Components\ParticleComponent.cpp" />
@@ -152,6 +153,8 @@
     <ClCompile Include="Source\GameEngine\EntitySystem\Components\CollidableComponent.cpp" />
     <ClCompile Include="Source\GameEngine\Util\CollisionManager.cpp" />
     <ClCompile Include="Source\GameEngine\Util\SoundManager.cpp" />
+    <ClCompile Include="Source\Game\GameComponents\RhythmLogicComponent.cpp" />
+    <ClCompile Include="Source\Game\GameEntities\Controller.cpp" />
     <ClCompile Include="Source\Game\GameEntities\ObstacleEntity.cpp" />
     <ClCompile Include="Source\Game\GameComponents\PlayerMovementComponent.cpp" />
     <ClCompile Include="Source\Game\GameEntities\PlayerEntity.cpp" />
@@ -166,8 +169,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\GameEngine\Util\MusicManager.h" />
+    <ClInclude Include="Source\Game\GameComponents\DualLogicComponent.h" />
+    <ClInclude Include="Source\Game\GameComponents\LogicComponent.h" />
     <ClInclude Include="Source\Game\GameComponents\NoteRenderComponent.h" />
-    <ClInclude Include="Source\Game\GameComponents\PlayerCameraComponent.h" />
     <ClInclude Include="Source\GameEngine\Util\CameraManager.h" />
     <ClInclude Include="Source\Game\GameComponents\PlayerSoundComponent.h" />
     <ClInclude Include="Source\GameEngine\EntitySystem\Components\ParticleComponent.h" />
@@ -179,6 +183,8 @@
     <ClInclude Include="Source\GameEngine\EntitySystem\Components\CollidableComponent.h" />
     <ClInclude Include="Source\GameEngine\Util\CollisionManager.h" />
     <ClInclude Include="Source\GameEngine\Util\SoundManager.h" />
+    <ClInclude Include="Source\Game\GameComponents\RhythmLogicComponent.h" />
+    <ClInclude Include="Source\Game\GameEntities\Controller.h" />
     <ClInclude Include="Source\Game\GameEntities\ObstacleEntity.h" />
     <ClInclude Include="Source\Game\GameComponents\PlayerMovementComponent.h" />
     <ClInclude Include="Source\Game\GameEntities\PlayerEntity.h" />
@@ -189,6 +195,7 @@
     <ClInclude Include="Source\GameEngine\GameEngineMain.h" />
     <ClInclude Include="Source\GameEngine\Util\TextureManager.h" />
     <ClInclude Include="Source\GameEngine\EntitySystem\Components\SpriteRenderComponent.h" />
+    <ClInclude Include="Source\Game\Util\Common.h" />
     <ClInclude Include="Source\Game\Util\Note.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

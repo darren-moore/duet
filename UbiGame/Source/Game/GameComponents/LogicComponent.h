@@ -4,9 +4,11 @@
 
 class LogicComponent : public GameEngine::Component {
 
-protected:
-	LogicComponent() {}
-	~LogicComponent() {}
+public:
+	LogicComponent();
+	~LogicComponent();
+
+	virtual void SpacePressed();
 
 	virtual void Update();
 	virtual void OnAddToWorld();

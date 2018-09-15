@@ -1,9 +1,9 @@
 #pragma once
-#include "GameEngine/EntitySystem/Components/RenderComponent.h"
+#include "GameEngine/EntitySystem/Components/SpriteRenderComponent.h"
 #include "Game/Util/Note.h"
 
 namespace GameEngine {
-	class NoteRenderComponent : public RenderComponent {
+	class NoteRenderComponent : public SpriteRenderComponent {
 	public:
 		enum eStemType { none, start, middle, end };
 		enum eNoteLength { whole, half, quarter, eighth, sixteenth };
@@ -15,7 +15,7 @@ namespace GameEngine {
 
 	private:
 		Note* m_note;
-		int m_stemHeight = 100;
+		int m_stemHeight = 75;
 
 		void renderNote(sf::RenderTarget* target);
 		void renderStem(sf::RenderTarget* target);

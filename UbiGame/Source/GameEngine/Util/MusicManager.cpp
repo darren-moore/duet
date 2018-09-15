@@ -30,21 +30,12 @@ vector<Note*> MusicManager::parseMusic(std::string musicString) {
 	vector<Note*> notes;
 	for (const auto& ns : noteStrings) {
 		Note* n;
-		if (ns.size() == 1) {
-			n = new Note((Note::eNoteLength)(ns[0]-48), Note::eStemType::none, true, false, false);
+		if (ns[0] == '_') {
+			n = new Note(stoi(ns.substr(1,ns.size() - 1)), Note::eStemType::none, true, true);
 		}
-		if (ns.size() == 2) {
-			if (ns[1] == '.') {
-				n = new Note((Note::eNoteLength)(ns[0] - 48), Note::eStemType::none, true, true, false);
-			}
-			else {
-				n = new Note((Note::eNoteLength)(ns[1] - 48), Note::eStemType::none, true, false, true);
-			}
+		else {
+			n = new Note(stoi(ns), Note::eStemType::none, true, false);
 		}
-		if (ns.size() == 3) {
-			n = new Note((Note::eNoteLength)(ns[1] - 48), Note::eStemType::none, true, true, true);
-		}
-
 		notes.push_back(n);
 	}
 
@@ -60,7 +51,7 @@ vector<float> MusicManager::convertNotesToBeatTimes(vector<Note*> notes, int bpm
 		if (!note->isRest) {
 			beatTimes.push_back(currentTime);
 		}
-		float noteTime = 1.f / note->noteLength;
+		float noteTime = (note->noteLength)/16.f;
 		noteTime /= (bpm / 60);
 		currentTime += noteTime;
 	}

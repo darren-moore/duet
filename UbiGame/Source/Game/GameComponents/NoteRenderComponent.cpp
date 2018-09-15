@@ -8,11 +8,19 @@ using namespace GameEngine;
 
 
 void NoteRenderComponent::Render(sf::RenderTarget* target) {
+
+	__super::Render(target);
+
+	if (!target)
+	{
+		return;
+	}
+
 	if (m_note->isRest) {
 		renderRest(target);
 	}
 	else {
-		renderNote(target);
+		//renderNote(target);
 		renderStem(target);
 	}
 
@@ -26,7 +34,7 @@ void NoteRenderComponent::renderNote(sf::RenderTarget* target) {
 	sf::RectangleShape rect = sf::RectangleShape();
 
 	rect.setSize(GetEntity()->GetSize());
-	rect.setPosition(GetEntity()->GetPos());
+	rect.setPosition(GetEntity()->GetPos() - GetEntity()->GetSize()/2.f);
 
 	sf::Color col = sf::Color(100, 250, 50);
 	col.b = 255;
@@ -55,15 +63,16 @@ void NoteRenderComponent::renderStem(sf::RenderTarget* target) {
 	sf::RectangleShape rect = sf::RectangleShape();
 	sf::Vector2f stemBase = GetEntity()->GetPos();
 	if (m_note->isStemUp) {
-		stemBase.x += GetEntity()->GetSize().x;
-		rect.setPosition(sf::Vector2f(stemBase.x, stemBase.y - m_stemHeight/2 ));
+		stemBase.x += GetEntity()->GetSize().x/2;
+		stemBase.y -= m_stemHeight;
+		rect.setPosition(stemBase);
 	}
 	else {
-		stemBase.x -= GetEntity()->GetSize().x;
-		rect.setPosition(sf::Vector2f(stemBase.x, stemBase.y + m_stemHeight/2 ));
+		stemBase.x -= GetEntity()->GetSize().x / 2;
+		rect.setPosition(stemBase);
 	}
 
-	rect.setSize(sf::Vector2f(10.f, m_stemHeight));
+	rect.setSize(sf::Vector2f(2.f, m_stemHeight));
 
 
 	sf::Color col = sf::Color(100, 50, 50);
@@ -75,9 +84,10 @@ void NoteRenderComponent::renderStem(sf::RenderTarget* target) {
 
 
 void NoteRenderComponent::renderDot(sf::RenderTarget* target) {
-	sf::CircleShape circ(2);
+	sf::CircleShape circ(GetEntity()->GetSize().x/7.f);
 
-	circ.setPosition(GetEntity()->GetPos() + (GetEntity()->GetSize()/2.f));
+	sf::Vector2f noteSize = GetEntity()->GetSize();
+	circ.setPosition(GetEntity()->GetPos() + sf::Vector2f(1*noteSize.x, noteSize.y*.2));
 
 	sf::Color col = sf::Color(100, 50, 250);
 	col.b = 255;
@@ -85,4 +95,3 @@ void NoteRenderComponent::renderDot(sf::RenderTarget* target) {
 
 	target->draw(circ);
 }
-

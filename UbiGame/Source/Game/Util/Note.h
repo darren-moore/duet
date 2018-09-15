@@ -2,15 +2,16 @@
 
 struct Note{
 	enum eStemType { none, start, middle, end };
-	enum eNoteLength { whole=1, half=2, quarter=4, eighth=8 };
 
-	Note(eNoteLength noteLength, eStemType stemType, bool isStemUp, bool isDotted, bool isRest) :
-		noteLength(noteLength), stemType(stemType), isStemUp(isStemUp), isDotted(isDotted), isRest(isRest) {};
+	Note(int noteLength, eStemType stemType, bool isStemUp, bool isRest) :
+		noteLength(noteLength), stemType(stemType), isStemUp(isStemUp), isRest(isRest) {
+			isDotted = noteLength == 3 || noteLength == 6 || noteLength == 12;
+	};
 
-	eNoteLength noteLength;
+	int noteLength;
 	eStemType stemType;
 	bool isStemUp;
-	bool isDotted;
 	bool isRest;
+	bool isDotted;
 
 };

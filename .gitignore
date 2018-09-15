@@ -13,6 +13,9 @@
 *.userprefs
 
 # Build results
+*.tlog
+*.idb
+*.exe
 
 x86/
 bld/

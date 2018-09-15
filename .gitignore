@@ -1,8 +1,0 @@
-# Whitelist only source files
-*
-!*/
-!*.cpp
-!*.h
-!*.png
-!*.mp3
-!*.wav

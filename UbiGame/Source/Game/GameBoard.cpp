@@ -5,6 +5,9 @@
 #include "GameEngine\EntitySystem\Components\SpriteRenderComponent.h"
 #include "Game/GameComponents/NoteRenderComponent.h"
 #include "Game/GameComponents/StaffRenderComponent.h"
+#include "Game/GameComponents/VelocityComponent.h"
+#include "Game/GameComponents/AccelerationComponent.h"
+#include "Game/GameComponents/PhysicsIntegratorComponent.h"
 #include "GameEngine\Util\CameraManager.h"
 #include "Game/Util/Note.h"
 #include <vector>
@@ -31,6 +34,10 @@ GameBoard::GameBoard() {
 
 	std::vector<GameEngine::Entity*> noteEntities = GameEngine::MusicManager::prepareNoteEntities(notes, sf::Vector2f(640, 200));
 	for (auto ne : noteEntities) {
+		ne->AddComponent<Game::VelocityComponent>();
+		ne->AddComponent<Game::AccelerationComponent>();
+		ne->GetComponent<Game::AccelerationComponent>()->acceleration = sf::Vector2f(0, 650);
+		ne->AddComponent<Game::PhysicsIntegratorComponent>();
 		GameEngine::GameEngineMain::GetInstance()->AddEntity(ne);
 	}
 

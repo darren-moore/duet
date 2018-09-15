@@ -143,7 +143,7 @@
     <ClCompile Include="Source\Game\GameComponents\LogicComponent.cpp" />
     <ClCompile Include="Source\Game\GameComponents\NoteRenderComponent.cpp" />
     <ClCompile Include="Source\GameEngine\Util\CameraManager.cpp" />
-    <ClCompile Include="Source\Game\GameComponents\PhysicsIntegrator.cpp" />
+    <ClCompile Include="Source\Game\GameComponents\PhysicsIntegratorComponent.cpp" />
     <ClCompile Include="Source\Game\GameComponents\PlayerSoundComponent.cpp" />
     <ClCompile Include="Source\GameEngine\EntitySystem\Components\ParticleComponent.cpp" />
     <ClCompile Include="Source\GameEngine\EntitySystem\Components\ParticleEmitterComponent.cpp" />
@@ -156,6 +156,7 @@
     <ClCompile Include="Source\GameEngine\Util\SoundManager.cpp" />
     <ClCompile Include="Source\Game\GameComponents\RhythmLogicComponent.cpp" />
     <ClCompile Include="Source\Game\GameComponents\StaffRenderComponent.cpp" />
+    <ClCompile Include="Source\Game\GameComponents\TriggerColliderComponent.cpp" />
     <ClCompile Include="Source\Game\GameEntities\Controller.cpp" />
     <ClCompile Include="Source\Game\GameComponents\PlayerMovementComponent.cpp" />
     <ClCompile Include="Source\Game\GameBoard.cpp" />
@@ -170,11 +171,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\GameEngine\Util\MusicManager.h" />
+    <ClInclude Include="Source\Game\GameComponents\AccelerationComponent.h" />
     <ClInclude Include="Source\Game\GameComponents\DualLogicComponent.h" />
     <ClInclude Include="Source\Game\GameComponents\LogicComponent.h" />
     <ClInclude Include="Source\Game\GameComponents\NoteRenderComponent.h" />
     <ClInclude Include="Source\GameEngine\Util\CameraManager.h" />
-    <ClInclude Include="Source\Game\GameComponents\PhysicsIntegrator.h" />
+    <ClInclude Include="Source\Game\GameComponents\PhysicsIntegratorComponent.h" />
     <ClInclude Include="Source\Game\GameComponents\PlayerSoundComponent.h" />
     <ClInclude Include="Source\GameEngine\EntitySystem\Components\ParticleComponent.h" />
     <ClInclude Include="Source\GameEngine\EntitySystem\Components\ParticleEmitterComponent.h" />
@@ -187,6 +189,8 @@
     <ClInclude Include="Source\GameEngine\Util\SoundManager.h" />
     <ClInclude Include="Source\Game\GameComponents\RhythmLogicComponent.h" />
     <ClInclude Include="Source\Game\GameComponents\StaffRenderComponent.h" />
+    <ClInclude Include="Source\Game\GameComponents\TriggerColliderComponent.h" />
+    <ClInclude Include="Source\Game\GameComponents\VelocityComponent.h" />
     <ClInclude Include="Source\Game\GameEntities\Controller.h" />
     <ClInclude Include="Source\Game\GameComponents\PlayerMovementComponent.h" />
     <ClInclude Include="Source\Game\GameBoard.h" />

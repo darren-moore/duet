@@ -14,7 +14,7 @@ namespace GameEngine
 			Player = 0,
 			Tileset,
 			BG,
-			Particles,
+			TapParticle,
 			Note,
 			Count
 		};
@@ -27,7 +27,7 @@ namespace GameEngine
 		case eTexture::Player:    return "player.png";
 		case eTexture::Tileset:   return "tileset.png";
 		case eTexture::BG:		  return "bg.png";
-		case eTexture::Particles: return "particles.png";
+		case eTexture::TapParticle: return "TapParticle.png";
 		case eTexture::Note:	  return "note.png";
 		default:       return "UnknownTexType";
 		}
@@ -60,9 +60,9 @@ namespace TextureHelper
 		{
 		case  GameEngine::eTexture::Player:  return sf::Vector2f(32.f, 32.f);
 		case  GameEngine::eTexture::Tileset: return sf::Vector2f(32.f, 32.f);
-		case  GameEngine::eTexture::BG:	     return sf::Vector2f(500.f, 500.f);
-		case  GameEngine::eTexture::Particles: return sf::Vector2f(31.f, 32.f);
-		case  GameEngine::eTexture::Note:	return sf::Vector2f(32.f, 32.f);
+		case  GameEngine::eTexture::BG:	     return sf::Vector2f(1280.f, 720.f);
+		case  GameEngine::eTexture::TapParticle: return sf::Vector2f(1280.f, 720.f);
+		case  GameEngine::eTexture::Note:	 return sf::Vector2f(32.f, 32.f);
 		default:							 return sf::Vector2f(-1.f, -1.f);
 		}
 	}

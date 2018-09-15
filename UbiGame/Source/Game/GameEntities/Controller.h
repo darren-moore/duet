@@ -18,4 +18,6 @@ public:
 private:
 	bool m_pressed;
 	LogicComponent * m_logic;
+
+	void generateParticle();
 };

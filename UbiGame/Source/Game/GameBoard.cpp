@@ -19,9 +19,7 @@
 
 using namespace Game;
 
-GameBoard::GameBoard()
-	: m_backGround(nullptr)
-{
+GameBoard::GameBoard() {
 
 	std::vector<Note*> notes = GameEngine::MusicManager::parseMusic("1 1 2 2 3 4 3");
 	std::vector<float> beats = GameEngine::MusicManager::convertNotesToBeatTimes(notes, 60);
@@ -53,12 +51,13 @@ GameBoard::GameBoard()
 	GameEngine::Entity * ticker = new Ticker();
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(ticker);
 
+	// Background Entity
+	CreateBackground();
 }
 
 
-GameBoard::~GameBoard()
-{
-
+GameBoard::~GameBoard() {
+	
 }
 
 
@@ -66,4 +65,14 @@ void GameBoard::Update()
 {
 	float dt = GameEngine::GameEngineMain::GetInstance()->GetTimeDelta();
 
+}
+
+void GameBoard::CreateBackground() {
+	GameEngine::Entity* bgEntity = new GameEngine::Entity();
+	GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>(bgEntity->AddComponent<GameEngine::SpriteRenderComponent>());
+	render->SetTexture(GameEngine::eTexture::BG);
+	render->SetZLevel(0);
+	bgEntity->SetPos(sf::Vector2f(640.f, 360.f));
+	bgEntity->SetSize(sf::Vector2f(1280.f, 720.f));
+	GameEngine::GameEngineMain::GetInstance()->AddEntity(bgEntity);
 }

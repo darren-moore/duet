@@ -1,6 +1,7 @@
 
 #include "MusicManager.h"
-
+#include "Game/GameComponents/NoteRenderComponent.h"
+#include "GameEngine/GameEngineMain.h"
 
 #include <string>
 #include <sstream>
@@ -61,4 +62,38 @@ vector<float> MusicManager::convertNotesToBeatTimes(vector<Note*> notes, int bpm
 	beatTimes.push_back(endFinalNote);
 
 	return beatTimes;
+}
+
+
+vector<Entity*> MusicManager::prepareNoteEntities(vector<Note*> notes, sf::Vector2f initPos) {
+	int position = initPos.x;
+	vector<Entity*> noteEntities;
+	for (auto n : notes) {
+		GameEngine::Entity* e = new GameEngine::Entity();
+		Game::NoteRenderComponent* renderComponent = static_cast<Game::NoteRenderComponent*>(e->AddComponent<Game::NoteRenderComponent>());
+		renderComponent->SetTexture(GameEngine::eTexture::Player);
+		renderComponent->SetZLevel(2);
+
+		renderComponent->setNote(n);
+		position += n->noteLength * 40 / 2;
+		e->SetPos(sf::Vector2f(position, initPos.y));
+		e->SetSize(sf::Vector2f(30, 30));
+		noteEntities.push_back(e);
+
+		position += n->noteLength * 40 / 2;
+	}
+
+	return noteEntities;
+}
+
+void MusicManager::moveNoteEntities(vector<Entity*> entities, sf::Vector2f pos) {
+	int position = pos.x;
+	for (auto e : entities) {
+		Note* note = e->GetComponent<Game::NoteRenderComponent>()->getNote();
+		position += note->noteLength * 40 / 2;
+		e->SetPos(sf::Vector2f(position, pos.y));
+		e->SetSize(sf::Vector2f(30, 30));
+		position += note->noteLength * 40 / 2;
+	}
+
 }

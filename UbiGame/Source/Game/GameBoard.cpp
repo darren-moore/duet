@@ -28,20 +28,12 @@ GameBoard::GameBoard() {
 	Game::StaffRenderComponent* renderComponent = static_cast<Game::StaffRenderComponent*>(rend->AddComponent<Game::StaffRenderComponent>());
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(rend);
 
-	int position = 0;
-	for (auto n : notes) {
-		GameEngine::Entity* e = new GameEngine::Entity();
-		Game::NoteRenderComponent* renderComponent = static_cast<Game::NoteRenderComponent*>(e->AddComponent<Game::NoteRenderComponent>());
-		renderComponent->SetTexture(GameEngine::eTexture::Note);
-		renderComponent->SetZLevel(2);
-
-		renderComponent->setNote(n);
-		position += n->noteLength * 40 / 2;
-		e->SetPos(sf::Vector2f(position, 100));
-		e->SetSize(sf::Vector2f(30, 30));
-		GameEngine::GameEngineMain::GetInstance()->AddEntity(e);
-		position += n->noteLength * 40 / 2;
+	std::vector<GameEngine::Entity*> noteEntities = GameEngine::MusicManager::prepareNoteEntities(notes, sf::Vector2f(640, 200));
+	for (auto ne : noteEntities) {
+		GameEngine::GameEngineMain::GetInstance()->AddEntity(ne);
 	}
+
+	GameEngine::MusicManager::moveNoteEntities(noteEntities, sf::Vector2f(0, 200));
 
 	// Controller Entity
 	GameEngine::Entity * controller = new Controller();

@@ -143,6 +143,7 @@
     <ClCompile Include="Source\Game\GameComponents\LogicComponent.cpp" />
     <ClCompile Include="Source\Game\GameComponents\NoteRenderComponent.cpp" />
     <ClCompile Include="Source\GameEngine\Util\CameraManager.cpp" />
+    <ClCompile Include="Source\Game\GameComponents\PhysicsIntegrator.cpp" />
     <ClCompile Include="Source\Game\GameComponents\PlayerSoundComponent.cpp" />
     <ClCompile Include="Source\GameEngine\EntitySystem\Components\ParticleComponent.cpp" />
     <ClCompile Include="Source\GameEngine\EntitySystem\Components\ParticleEmitterComponent.cpp" />
@@ -175,6 +176,7 @@
     <ClInclude Include="Source\Game\GameComponents\LogicComponent.h" />
     <ClInclude Include="Source\Game\GameComponents\NoteRenderComponent.h" />
     <ClInclude Include="Source\GameEngine\Util\CameraManager.h" />
+    <ClInclude Include="Source\Game\GameComponents\PhysicsIntegrator.h" />
     <ClInclude Include="Source\Game\GameComponents\PlayerSoundComponent.h" />
     <ClInclude Include="Source\GameEngine\EntitySystem\Components\ParticleComponent.h" />
     <ClInclude Include="Source\GameEngine\EntitySystem\Components\ParticleEmitterComponent.h" />
@@ -200,6 +202,7 @@
     <ClInclude Include="Source\GameEngine\EntitySystem\Components\SpriteRenderComponent.h" />
     <ClInclude Include="Source\Game\GameEntities\Ticker.h" />
     <ClInclude Include="Source\Game\Util\Common.h" />
+    <ClInclude Include="Source\Game\Util\Note.h" />
     <ClInclude Include="Source\Game\Util\Note.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

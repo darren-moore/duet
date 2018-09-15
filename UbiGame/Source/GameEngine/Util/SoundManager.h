@@ -39,6 +39,9 @@ namespace GameEngine
 		void PlaySound(SoundId const soundIdToPlay, bool useExistingSoundInstance = false);
 		void PlayMusic(std::string const& filename);
 
+		float GetCurrentMusicOffset() const;
+		void setMusicLoop(bool loop);
+
 	private:
 		bool IsValidSoundId(SoundId const soundId) const;
 		SoundInstancePtr FindNextAvailableSoundInstance();

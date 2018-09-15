@@ -89,6 +89,13 @@ void SoundManager::PlayMusic(std::string const& filename)
 	sm_music.play();
 }
 
+float SoundManager::GetCurrentMusicOffset() const {
+	return sm_music.getPlayingOffset().asSeconds();
+}
+
+void GameEngine::SoundManager::setMusicLoop(bool loop) {
+	sm_music.setLoop(loop);
+}
 
 SoundManager::SoundId SoundManager::CreateNewSoundResource(std::string const& filename)
 {

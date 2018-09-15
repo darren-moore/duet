@@ -10,6 +10,8 @@
 #include "GameComponents/RhythmLogicComponent.h"
 #include "GameComponents/DualLogicComponent.h"
 
+#include "GameEntities/Ticker.h"
+
 using namespace Game;
 
 GameBoard::GameBoard()
@@ -22,8 +24,13 @@ GameBoard::GameBoard()
 	e->SetSize(sf::Vector2f(30, 30));
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(e);
 
-	GameEngine::Entity * ent = new Controller();
-	GameEngine::GameEngineMain::GetInstance()->AddEntity(ent);
+	// Controller Entity
+	GameEngine::Entity * controller = new Controller();
+	GameEngine::GameEngineMain::GetInstance()->AddEntity(controller);
+
+	// Ticker Entity
+	GameEngine::Entity * ticker = new Ticker();
+	GameEngine::GameEngineMain::GetInstance()->AddEntity(ticker);
 }
 
 

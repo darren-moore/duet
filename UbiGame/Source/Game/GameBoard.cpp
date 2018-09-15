@@ -14,6 +14,8 @@
 #include "GameComponents/RhythmLogicComponent.h"
 #include "GameComponents/DualLogicComponent.h"
 
+#include "GameEntities/Ticker.h"
+
 using namespace Game;
 
 GameBoard::GameBoard()
@@ -38,8 +40,13 @@ GameBoard::GameBoard()
 		position += n->noteLength * 16 / 2;
 	}
 
-	GameEngine::Entity * ent = new Controller();
-	GameEngine::GameEngineMain::GetInstance()->AddEntity(ent);
+	// Controller Entity
+	GameEngine::Entity * controller = new Controller();
+	GameEngine::GameEngineMain::GetInstance()->AddEntity(controller);
+
+	// Ticker Entity
+	GameEngine::Entity * ticker = new Ticker();
+	GameEngine::GameEngineMain::GetInstance()->AddEntity(ticker);
 
 }
 

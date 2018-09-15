@@ -166,6 +166,7 @@
     <ClCompile Include="Source\GameEngine\GameEngineMain.cpp" />
     <ClCompile Include="Source\GameEngine\Util\TextureManager.cpp" />
     <ClCompile Include="Source\GameEngine\EntitySystem\Components\SpriteRenderComponent.cpp" />
+    <ClCompile Include="Source\Game\GameEntities\Ticker.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\GameEngine\Util\MusicManager.h" />
@@ -195,6 +196,7 @@
     <ClInclude Include="Source\GameEngine\GameEngineMain.h" />
     <ClInclude Include="Source\GameEngine\Util\TextureManager.h" />
     <ClInclude Include="Source\GameEngine\EntitySystem\Components\SpriteRenderComponent.h" />
+    <ClInclude Include="Source\Game\GameEntities\Ticker.h" />
     <ClInclude Include="Source\Game\Util\Common.h" />
     <ClInclude Include="Source\Game\Util\Note.h" />
   </ItemGroup>

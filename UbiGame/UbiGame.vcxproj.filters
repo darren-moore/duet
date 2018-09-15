@@ -102,6 +102,9 @@
     <ClCompile Include="Source\Game\GameComponents\StaffRenderComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Game\GameComponents\PhysicsIntegrator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\GameEngine\GameEngineMain.h">
@@ -167,9 +170,6 @@
     <ClInclude Include="Source\GameEngine\Util\MusicManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Game\Util\Note.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Game\GameComponents\LogicComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -189,6 +189,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Game\GameComponents\StaffRenderComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\GameComponents\PhysicsIntegrator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Util\Note.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Util\Note.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

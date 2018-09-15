@@ -47,6 +47,9 @@ void Controller::Update() {
 		// Reset the pressed flag once the space bar is no longer pressed
 		m_pressed = false;
 	}
+
+	// Also update the logic component
+	m_logic->Update();
 }
 
 void Controller::OnAddToWorld() {

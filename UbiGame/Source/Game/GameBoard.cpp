@@ -27,11 +27,13 @@ GameBoard::GameBoard() {
 	std::vector<Note*> notes = GameEngine::MusicManager::parseMusic("1 1 2 2 3 4 3");
 	std::vector<float> beats = GameEngine::MusicManager::convertNotesToBeatTimes(notes, 60);
 
+	// Add the staff render entities to the game
 	GameEngine::Entity* rend = new GameEngine::Entity();
 	Game::StaffRenderComponent* renderComponent = static_cast<Game::StaffRenderComponent*>(rend->AddComponent<Game::StaffRenderComponent>());
-	renderComponent->SetZLevel(1);
+	renderComponent->SetZLevel(2);
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(rend);
 
+	/*
 	std::vector<GameEngine::Entity*> noteEntities = GameEngine::MusicManager::prepareNoteEntities(notes, sf::Vector2f(640, 200));
 	for (auto ne : noteEntities) {
 		ne->AddComponent<Game::VelocityComponent>();
@@ -42,6 +44,7 @@ GameBoard::GameBoard() {
 	}
 
 	GameEngine::MusicManager::moveNoteEntities(noteEntities, sf::Vector2f(0, 200));
+	*/
 
 	// Ticker Entity
 	Ticker * ticker = new Ticker();

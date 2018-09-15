@@ -6,6 +6,10 @@
 #include "Game/GameComponents/NoteRenderComponent.h"
 #include "GameEngine\Util\CameraManager.h"
 
+#include "GameEntities/Controller.h"
+#include "GameComponents/RhythmLogicComponent.h"
+#include "GameComponents/DualLogicComponent.h"
+
 using namespace Game;
 
 GameBoard::GameBoard()
@@ -17,6 +21,9 @@ GameBoard::GameBoard()
 	e->SetPos(sf::Vector2f(100, 100));
 	e->SetSize(sf::Vector2f(30, 30));
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(e);
+
+	GameEngine::Entity * ent = new Controller();
+	GameEngine::GameEngineMain::GetInstance()->AddEntity(ent);
 }
 
 

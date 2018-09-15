@@ -1,5 +1,6 @@
 #pragma once
 #include "GameEngine/EntitySystem/Components/RenderComponent.h"
+#include "Game/Util/Note.h"
 
 namespace GameEngine {
 	class NoteRenderComponent : public RenderComponent {
@@ -8,22 +9,13 @@ namespace GameEngine {
 		enum eNoteLength { whole, half, quarter, eighth, sixteenth };
 
 		void Render(sf::RenderTarget* target);
-		void setNoteProps(eStemType eStemType, int stemHeight, bool stemUp, bool isDotted, bool isRest);
+		void setNote(Note* note) { m_note = note; }
 
-		eNoteLength getNoteLength() { return m_noteLength; }
-		eStemType getStemType() { return m_stemType; }
-		bool getIsStemUp() { return m_isStemUp; }
-		bool getIsDotted() { return m_isDotted; }
-		bool getIsRest() { return m_isRest; }
-		int getStemHeight() { return m_stemHeight; }
+		Note* getNote() { return m_note; }
 
 	private:
-		eNoteLength m_noteLength;
-		eStemType m_stemType;
-		int m_stemHeight;
-		bool m_isStemUp;
-		bool m_isDotted;
-		bool m_isRest;
+		Note* m_note;
+		int m_stemHeight = 100;
 
 		void renderNote(sf::RenderTarget* target);
 		void renderStem(sf::RenderTarget* target);

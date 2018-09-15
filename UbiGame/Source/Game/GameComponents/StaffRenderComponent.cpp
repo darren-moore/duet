@@ -9,7 +9,6 @@ void StaffRenderComponent::Render(sf::RenderTarget* target) {
 
 }
 
-
 void StaffRenderComponent::renderStaff(sf::RenderTarget* target, sf::Vector2f topLeft) {
 	
 	for (int y = 0; y < 5; y++) {

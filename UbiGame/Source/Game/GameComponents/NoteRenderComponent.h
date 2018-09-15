@@ -1,3 +1,7 @@
+/*
+Renders a sprite along with other visuals of a musical note. 
+*/
+
 #pragma once
 #include "GameEngine/EntitySystem/Components/SpriteRenderComponent.h"
 #include "../Util/Note.h"
@@ -15,7 +19,6 @@ namespace Game {
 		Note* m_note;
 		float m_stemHeight = 75.f;
 
-		void renderNote(sf::RenderTarget* target);
 		void renderStem(sf::RenderTarget* target);
 		void renderRest(sf::RenderTarget* target);
 		void renderDot(sf::RenderTarget* target);

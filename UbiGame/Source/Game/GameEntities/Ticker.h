@@ -1,5 +1,8 @@
-#pragma once
+/*
+Handles music playback and beat tracking.
+*/
 
+#pragma once
 #include "GameEngine/EntitySystem/Entity.h"
 #include "GameEngine/Util/SoundManager.h"
 

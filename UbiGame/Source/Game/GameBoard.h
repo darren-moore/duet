@@ -1,7 +1,6 @@
 #pragma once
 #include "GameEngine\EntitySystem\Entity.h"
 
-
 #include <SFML/System/Vector2.hpp>
 #include <vector>
 

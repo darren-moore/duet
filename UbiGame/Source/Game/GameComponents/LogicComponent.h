@@ -1,5 +1,8 @@
-#pragma once
+/*
+The base class for different gameplay states.
+*/
 
+#pragma once
 #include "GameEngine\EntitySystem\Component.h"
 
 class Ticker;

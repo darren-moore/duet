@@ -12,7 +12,7 @@
 #include "Game/Util/Note.h"
 #include <vector>
 
-#include "GameEngine/Util/MusicManager.h"
+#include "Game/Util/MusicNoteUtils.h"
 
 #include "GameEntities/Controller.h"
 #include "GameComponents/RhythmLogicComponent.h"
@@ -24,8 +24,8 @@ using namespace Game;
 
 GameBoard::GameBoard() {
 
-	std::vector<Note*> notes = GameEngine::MusicManager::parseMusic("_2 1 1 1 1 2 _1 1 1 1 2 2");
-	std::vector<float> beats = GameEngine::MusicManager::convertNotesToBeatTimes(notes, 60);
+	std::vector<Note*> notes = Game::MusicNoteUtils::parseMusic("_2 1 1 1 1 2 _1 1 1 1 2 2");
+	std::vector<float> beats = Game::MusicNoteUtils::convertNotesToBeatTimes(notes, 60);
 
 	// Add the staff render entities to the game
 	GameEngine::Entity* rend = new GameEngine::Entity();
@@ -34,7 +34,7 @@ GameBoard::GameBoard() {
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(rend);
 
 	/*
-	std::vector<GameEngine::Entity*> noteEntities = GameEngine::MusicManager::prepareNoteEntities(notes, sf::Vector2f(640, 200));
+	std::vector<GameEngine::Entity*> noteEntities = GameEngine::MusicNoteUtils::prepareNoteEntities(notes, sf::Vector2f(640, 200));
 	for (auto ne : noteEntities) {
 		ne->AddComponent<Game::VelocityComponent>();
 		ne->AddComponent<Game::AccelerationComponent>();
@@ -43,7 +43,7 @@ GameBoard::GameBoard() {
 		GameEngine::GameEngineMain::GetInstance()->AddEntity(ne);
 	}
 
-	GameEngine::MusicManager::moveNoteEntities(noteEntities, sf::Vector2f(0, 200));
+	GameEngine::MusicNoteUtils::moveNoteEntities(noteEntities, sf::Vector2f(0, 200));
 	*/
 
 	// Ticker Entity

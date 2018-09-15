@@ -1,5 +1,8 @@
-#pragma once
+/*
+Renders the music staff.
+*/
 
+#pragma once
 #include "GameEngine/EntitySystem/Components/RenderComponent.h"
 
 namespace Game {

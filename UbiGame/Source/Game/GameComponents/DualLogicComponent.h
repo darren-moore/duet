@@ -1,5 +1,8 @@
-#pragma once
+/*
+Contains gameplay logic for "dual" game mode.
+*/
 
+#pragma once
 #include "LogicComponent.h"
 
 class DualLogicComponent : public LogicComponent {

@@ -1,7 +1,7 @@
 #pragma once
 #include "GameEngine\EntitySystem\Component.h"
 #include "GameEngine\Util\SoundManager.h"
-
+// TODO: remove?
 namespace Game
 {
 	class PlayerSoundComponent : public GameEngine::Component

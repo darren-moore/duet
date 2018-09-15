@@ -1,10 +1,13 @@
-#pragma once
+/*
+Contains gameplay logic for "rhythm" game mode.
+*/
 
+#pragma once
 #include "LogicComponent.h"
 
 #include <vector>
 
-class Note;
+struct Note;
 class GameEngine::Entity;
 
 class RhythmLogicComponent : public LogicComponent {

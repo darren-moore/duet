@@ -20,7 +20,6 @@ void NoteRenderComponent::Render(sf::RenderTarget* target) {
 		renderRest(target);
 	}
 	else {
-		//renderNote(target);
 		renderStem(target);
 	}
 
@@ -30,22 +29,7 @@ void NoteRenderComponent::Render(sf::RenderTarget* target) {
 
 }
 
-void NoteRenderComponent::renderNote(sf::RenderTarget* target) {
-	sf::RectangleShape rect = sf::RectangleShape();
-
-	rect.setSize(GetEntity()->GetSize());
-	rect.setPosition(GetEntity()->GetPos() - GetEntity()->GetSize()/2.f);
-
-	sf::Color col = sf::Color(100, 250, 50);
-	col.b = 255;
-	rect.setFillColor(sf::Color::Transparent);
-	rect.setOutlineThickness(2.f);
-
-	rect.setOutlineColor(col);
-
-	target->draw(rect);
-}
-
+// TODO
 void NoteRenderComponent::renderRest(sf::RenderTarget* target) {
 	sf::RectangleShape rect = sf::RectangleShape();
 
@@ -116,7 +100,7 @@ void NoteRenderComponent::renderStem(sf::RenderTarget* target) {
 	}
 }
 
-
+// TODO
 void NoteRenderComponent::renderDot(sf::RenderTarget* target) {
 	sf::CircleShape circ(GetEntity()->GetSize().x/7.f);
 

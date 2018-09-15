@@ -81,9 +81,6 @@
     <ClCompile Include="Source\Game\GameComponents\NoteRenderComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\GameEngine\Util\MusicManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Game\GameComponents\LogicComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -106,6 +103,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Game\GameComponents\TriggerColliderComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Util\MusicNoteUtils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -170,9 +170,6 @@
     <ClInclude Include="Source\Game\GameComponents\NoteRenderComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\GameEngine\Util\MusicManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Game\GameComponents\LogicComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -210,6 +207,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Game\GameComponents\TriggerColliderComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Util\MusicNoteUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

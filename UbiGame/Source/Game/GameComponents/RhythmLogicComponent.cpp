@@ -1,7 +1,7 @@
 #include "RhythmLogicComponent.h"
 
 #include "GameEngine/GameEngineMain.h"
-#include "GameEngine/Util/MusicManager.h"
+#include "Game/Util/MusicNoteUtils.h"
 #include "GameEngine/EntitySystem/Entity.h"
 #include "GameEngine/EntitySystem/Components/SpriteRenderComponent.h"
 
@@ -17,8 +17,8 @@ RhythmLogicComponent::RhythmLogicComponent()
 	, lastTick(0.f)
 {
 	// Initialize all the bars to have 4/4 for now
-	for (int i = 0; i < 4; ++i) notes[i] = GameEngine::MusicManager::parseMusic("4 4 4 4");
-	for (int i = 0; i < 4; ++i) beats[i] = GameEngine::MusicManager::convertNotesToBeatTimes(notes[i], bpm);
+	for (int i = 0; i < 4; ++i) notes[i] = Game::MusicNoteUtils::parseMusic("4 4 4 4");
+	for (int i = 0; i < 4; ++i) beats[i] = Game::MusicNoteUtils::convertNotesToBeatTimes(notes[i], bpm);
 	// Add the highlights entity to the world
 	m_sprite = new GameEngine::Entity();
 	GameEngine::SpriteRenderComponent * rend = static_cast<GameEngine::SpriteRenderComponent*>(m_sprite->AddComponent<GameEngine::SpriteRenderComponent>());
@@ -72,22 +72,22 @@ float RhythmLogicComponent::DistanceToNearestNote(float beat) {
 
 void RhythmLogicComponent::renderQuadNotes(int quad) {
 	// Adds note entities to render
-	std::vector<GameEngine::Entity*> noteEntities = GameEngine::MusicManager::prepareNoteEntities(notes[quad], sf::Vector2f(640, 200));
+	std::vector<GameEngine::Entity*> noteEntities = Game::MusicNoteUtils::prepareNoteEntities(notes[quad], sf::Vector2f(640, 200));
 	for (auto ne : noteEntities) {
 		GameEngine::GameEngineMain::GetInstance()->AddEntity(ne);
 	}
 	switch (quad) {
 	case 0: {
-		GameEngine::MusicManager::moveNoteEntities(noteEntities, sf::Vector2f(0, 200));
+		Game::MusicNoteUtils::moveNoteEntities(noteEntities, sf::Vector2f(0, 200));
 	} break;
 	case 1: {
-		GameEngine::MusicManager::moveNoteEntities(noteEntities, sf::Vector2f(640, 200));
+		Game::MusicNoteUtils::moveNoteEntities(noteEntities, sf::Vector2f(640, 200));
 	} break;
 	case 2: {
-		GameEngine::MusicManager::moveNoteEntities(noteEntities, sf::Vector2f(0, 400));
+		Game::MusicNoteUtils::moveNoteEntities(noteEntities, sf::Vector2f(0, 400));
 	} break;
 	case 3: {
-		GameEngine::MusicManager::moveNoteEntities(noteEntities, sf::Vector2f(640, 400));
+		Game::MusicNoteUtils::moveNoteEntities(noteEntities, sf::Vector2f(640, 400));
 	} break;
 	default: {
 		// This should never happen...

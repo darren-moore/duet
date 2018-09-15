@@ -1,5 +1,8 @@
-#pragma once
+/*
+Handles player input before dispatching to logic components.
+*/
 
+#pragma once
 #include "GameEngine/EntitySystem/Entity.h"
 #include "../Util/Common.h"
 

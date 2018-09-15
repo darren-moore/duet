@@ -1,5 +1,5 @@
 
-#include "MusicManager.h"
+#include "MusicNoteUtils.h"
 #include "Game/GameComponents/NoteRenderComponent.h"
 #include "GameEngine/GameEngineMain.h"
 
@@ -8,7 +8,7 @@
 #include <vector>
 #include <iterator>
 
-using namespace GameEngine;
+using namespace Game;
 using namespace std;
 
 // String splitting from https://stackoverflow.com/a/236803
@@ -27,7 +27,7 @@ std::vector<std::string> split(const std::string &s, char delim){
 	return elems;
 }
 
-vector<Note*> MusicManager::parseMusic(std::string musicString) {
+vector<Note*> MusicNoteUtils::parseMusic(std::string musicString) {
 	vector<string> noteStrings = split(musicString, ' ');
 	vector<Note*> notes;
 	for (const auto& ns : noteStrings) {
@@ -45,7 +45,7 @@ vector<Note*> MusicManager::parseMusic(std::string musicString) {
 	return notes;
 }
 
-void MusicManager::assignStemTypes(vector<Note*> notes) {
+void MusicNoteUtils::assignStemTypes(vector<Note*> notes) {
 	int endCheck = 0;
 
 	int beatCounter = 0;
@@ -106,7 +106,7 @@ void MusicManager::assignStemTypes(vector<Note*> notes) {
 }
 
 // Convert to beat times, starting at 0. The last element denotes the time of the end of the note.
-vector<float> MusicManager::convertNotesToBeatTimes(vector<Note*> notes, int bpm) {
+vector<float> MusicNoteUtils::convertNotesToBeatTimes(vector<Note*> notes, int bpm) {
 	vector<float> beatTimes;
 	float currentTime = 0;
 	for (auto note : notes) {
@@ -125,9 +125,9 @@ vector<float> MusicManager::convertNotesToBeatTimes(vector<Note*> notes, int bpm
 }
 
 
-vector<Entity*> MusicManager::prepareNoteEntities(vector<Note*> notes, sf::Vector2f initPos) {
+vector<GameEngine::Entity*> MusicNoteUtils::prepareNoteEntities(vector<Note*> notes, sf::Vector2f initPos) {
 	int position = (int)initPos.x;
-	vector<Entity*> noteEntities;
+	vector<GameEngine::Entity*> noteEntities;
 	for (auto n : notes) {
 		GameEngine::Entity* e = new GameEngine::Entity();
 		Game::NoteRenderComponent* renderComponent = static_cast<Game::NoteRenderComponent*>(e->AddComponent<Game::NoteRenderComponent>());
@@ -146,7 +146,7 @@ vector<Entity*> MusicManager::prepareNoteEntities(vector<Note*> notes, sf::Vecto
 	return noteEntities;
 }
 
-void MusicManager::moveNoteEntities(vector<Entity*> entities, sf::Vector2f pos) {
+void MusicNoteUtils::moveNoteEntities(vector<GameEngine::Entity*> entities, sf::Vector2f pos) {
 	int position = (int)pos.x;
 	for (auto e : entities) {
 		Note* note = e->GetComponent<Game::NoteRenderComponent>()->getNote();

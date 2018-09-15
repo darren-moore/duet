@@ -2,7 +2,8 @@
 
 using namespace GameEngine;
 
-LogicComponent::LogicComponent() {
+// Require a ticker for the logic components
+LogicComponent::LogicComponent() : ticker(nullptr) {
 	
 }
 

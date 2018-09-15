@@ -44,13 +44,13 @@ GameBoard::GameBoard() {
 		position += n->noteLength * 40 / 2;
 	}
 
-	// Controller Entity
-	GameEngine::Entity * controller = new Controller();
-	GameEngine::GameEngineMain::GetInstance()->AddEntity(controller);
-
 	// Ticker Entity
-	GameEngine::Entity * ticker = new Ticker();
+	Ticker * ticker = new Ticker();
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(ticker);
+
+	// Controller Entity
+	Controller * controller = new Controller(ticker);
+	GameEngine::GameEngineMain::GetInstance()->AddEntity(controller);
 
 	// Background Entity
 	CreateBackground();

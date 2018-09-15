@@ -3,13 +3,13 @@
 #include "GameEngine/GameEngineMain.h"
 
 #include <iostream>
+#include <cmath>
 
 Ticker::Ticker(int bpm)
 	: m_bpm(bpm)
 	, m_soundManager(new GameEngine::SoundManager(10))
 	, timer(0.f)
 	, step(60.f / static_cast<float>(bpm))
-	, goal(0.f)
 	, m_playing(false)
 {
 	
@@ -24,7 +24,6 @@ void Ticker::OnAddToWorld() {
 	m_soundManager->setMusicLoop(true);
 	timer = 0.f;
 	step = 60.f / static_cast<float>(m_bpm);
-	goal = 0.f;
 }
 
 void Ticker::OnRemoveFromWorld() {
@@ -34,9 +33,8 @@ void Ticker::OnRemoveFromWorld() {
 void Ticker::Update() {
 	if (m_playing) {
 		timer += GameEngine::GameEngineMain::GetTimeDelta();
-		if (timer > goal) {
-			std::cout << "GOAL!" << std::endl;
-			goal += step;
+		if (timer > step * NUM_BEATS_IN_BAR) {
+			timer = 0.f;
 		}
 	}
 	else {
@@ -45,4 +43,8 @@ void Ticker::Update() {
 			m_playing = true;
 		}
 	}
+}
+
+float Ticker::getCurrentBarTick() const {
+	return timer;
 }

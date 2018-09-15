@@ -39,6 +39,7 @@ void AnimationManager::InitStaticGameAnimations()
 			15)
 	);
 
+	/*
 	m_animDefinitions.push_back
 	(
 		SAnimationDefinition(
@@ -48,6 +49,7 @@ void AnimationManager::InitStaticGameAnimations()
 			10,
 			15)
 	);
+	*/
 }
 
 

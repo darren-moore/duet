@@ -1,6 +1,8 @@
 #include "Controller.h"
 
 #include "GameEngine/GameEngineMain.h"
+#include "GameEngine/EntitySystem/Components/ParticleComponent.h"
+#include "GameEngine/EntitySystem/Components/SpriteRenderComponent.h"
 #include "../GameComponents/LogicComponent.h"
 #include "../GameComponents/DualLogicComponent.h"
 #include "../GameComponents/RhythmLogicComponent.h"
@@ -31,6 +33,8 @@ void Controller::Update() {
 		if (!m_pressed) {
 			m_pressed = true;
 			m_logic->SpacePressed();
+			// Add a beat tap particle
+			generateParticle();
 		}
 	}
 	else {
@@ -45,4 +49,16 @@ void Controller::OnAddToWorld() {
 
 void Controller::OnRemoveFromWorld() {
 
+}
+
+void Controller::generateParticle() {
+	GameEngine::Entity* bgEntity = new GameEngine::Entity();
+	GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>(bgEntity->AddComponent<GameEngine::SpriteRenderComponent>());
+	render->SetTexture(GameEngine::eTexture::TapParticle);
+	render->SetZLevel(20);
+	bgEntity->SetPos(sf::Vector2f(640.f, 360.f));
+	bgEntity->SetSize(sf::Vector2f(1280.f, 720.f));
+	GameEngine::ParticleComponent* part = static_cast<GameEngine::ParticleComponent*>(bgEntity->AddComponent<GameEngine::ParticleComponent>());
+	part->SetLifeTime(0.1);
+	GameEngine::GameEngineMain::GetInstance()->AddEntity(bgEntity);
 }

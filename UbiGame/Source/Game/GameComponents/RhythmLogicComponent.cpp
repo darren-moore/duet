@@ -17,7 +17,7 @@ RhythmLogicComponent::RhythmLogicComponent()
 	, lastTick(0.f)
 {
 	// Initialize all the bars to have 4/4 for now
-	for (int i = 0; i < 4; ++i) notes[i] = Game::MusicNoteUtils::parseMusic("4 4 4 4");
+	for (int i = 0; i < 4; ++i) notes[i] = Game::MusicNoteUtils::parseMusic("0,4 5,4 10,4 14,4");
 	for (int i = 0; i < 4; ++i) beats[i] = Game::MusicNoteUtils::convertNotesToBeatTimes(notes[i], bpm);
 	// Add the highlights entity to the world
 	m_sprite = new GameEngine::Entity();

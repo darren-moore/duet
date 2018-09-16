@@ -27,16 +27,38 @@ std::vector<std::string> split(const std::string &s, char delim){
 	return elems;
 }
 
+//vector<Note*> MusicNoteUtils::parseMusic(std::string musicString) {
+//	vector<string> noteStrings = split(musicString, ' ');
+//	vector<Note*> notes;
+//	for (const auto& ns : noteStrings) {
+//		Note* n;
+//		if (ns[0] == '_') {
+//			n = new Note(stoi(ns.substr(1,ns.size() - 1)), Note::eStemType::none, true, true);
+//		}
+//		else {
+//			n = new Note(stoi(ns), Note::eStemType::none, true, false);
+//		}
+//		notes.push_back(n);
+//	}
+//
+//	assignStemTypes(notes);
+//	return notes;
+//}
+
 vector<Note*> MusicNoteUtils::parseMusic(std::string musicString) {
 	vector<string> noteStrings = split(musicString, ' ');
 	vector<Note*> notes;
 	for (const auto& ns : noteStrings) {
 		Note* n;
-		if (ns[0] == '_') {
-			n = new Note(stoi(ns.substr(1,ns.size() - 1)), Note::eStemType::none, true, true);
+		if (ns[0] == '_') {	// It's a rest.
+			n = new Note(stoi(ns.substr(1, ns.size() - 1)), 0, Note::eStemType::none, true, true);
+
 		}
-		else {
-			n = new Note(stoi(ns), Note::eStemType::none, true, false);
+		else {	// Note, not a rest
+			int delimPos = ns.find(',');
+			string s1 = ns.substr(delimPos+1, ns.size() - 1);
+			string s2 = ns.substr(0, delimPos);
+			n = new Note(stoi(s1), stoi(s2), Note::eStemType::none, true, false);
 		}
 		notes.push_back(n);
 	}
@@ -136,7 +158,7 @@ vector<GameEngine::Entity*> MusicNoteUtils::prepareNoteEntities(vector<Note*> no
 
 		renderComponent->setNote(n);
 		position += n->noteLength * 40 / 2;
-		e->SetPos(sf::Vector2f((float)position, initPos.y));
+		e->SetPos(sf::Vector2f((float)position, initPos.y + n->notePitch * 5));
 		e->SetSize(sf::Vector2f(30, 30));
 		noteEntities.push_back(e);
 
@@ -151,7 +173,7 @@ void MusicNoteUtils::moveNoteEntities(vector<GameEngine::Entity*> entities, sf::
 	for (auto e : entities) {
 		Note* note = e->GetComponent<Game::NoteRenderComponent>()->getNote();
 		position += note->noteLength * 40 / 2;
-		e->SetPos(sf::Vector2f((float)position, pos.y));
+		e->SetPos(sf::Vector2f((float)position, pos.y + note->notePitch * 5));
 		e->SetSize(sf::Vector2f(30, 30));
 		position += note->noteLength * 40 / 2;
 	}

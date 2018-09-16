@@ -3,12 +3,14 @@
 // Engine includes
 #include "GameEngine/GameEngineMain.h"
 #include "GameEngine/EntitySystem/Components/SpriteRenderComponent.h"
+#include "GameEngine/Util/CameraManager.h"
 
 // Game code includes
 #include "Ticker.h"
 #include "../GameComponents/LogicComponent.h"
 #include "../GameComponents/DualLogicComponent.h"
 #include "../GameComponents/RhythmLogicComponent.h"
+#include "../GameComponents/ScreenShakeComponent.h"
 
 #include <iostream>
 
@@ -22,6 +24,9 @@ Controller::Controller(Ticker * ticker, eGameMode mode)
 {
 	// Initialize the logic based on the gamemode
 	setLogicComponent(mode);
+	// Save the camera center first
+	center_x = GameEngine::GameEngineMain::GetInstance()->GetRenderWindow()->getSize().x / 2.f;
+	center_y = GameEngine::GameEngineMain::GetInstance()->GetRenderWindow()->getSize().y / 2.f;
 }
 
 Controller::~Controller() {
@@ -52,6 +57,7 @@ void Controller::Update() {
 
 	// Update the logic component
 	m_logic->Update();
+	if (m_shake) m_shake->Update();
 
 	// If we exceed the number of bars until a switch, switch the game state
 	if (lastTick > ticker->getCurrentBarTick()) {
@@ -108,6 +114,12 @@ void Controller::swapState() {
 		// Technically never supposed to happen
 	} break;
 	}
+
+	// Add a screen shake component
+	m_shake = static_cast<ScreenShakeComponent*>(AddComponent<ScreenShakeComponent>());
+	m_shake->setCenter(center_x, center_y);
+	m_shake->setTime(1.f);
+
 	// Add notes data to the new logic component
 	m_logic->recieveData(notes);
 }

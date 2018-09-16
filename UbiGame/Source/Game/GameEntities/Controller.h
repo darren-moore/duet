@@ -9,6 +9,7 @@ Handles player input before dispatching to logic components.
 #define NUM_BARS_UNTIL_SWITCH 2.f
 
 class LogicComponent;
+class ScreenShakeComponent;
 class Ticker;
 
 class Controller : public GameEngine::Entity {
@@ -30,6 +31,7 @@ private:
 	
 	bool m_pressed;
 	LogicComponent * m_logic;
+	ScreenShakeComponent * m_shake;
 
 	// Keep a reference to the ticker to handle state transitioning at the right time
 	Ticker * ticker;
@@ -38,4 +40,8 @@ private:
 
 	void setLogicComponent(eGameMode mode);
 	void swapState();
+
+	// Variables for controlling camera shake
+	float center_x, center_y;
+	float offset_x, offset_y;
 };

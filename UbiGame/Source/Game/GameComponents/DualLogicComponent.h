@@ -5,6 +5,8 @@ Contains gameplay logic for "dual" game mode.
 #pragma once
 #include "LogicComponent.h"
 
+class GameEngine::Entity;
+
 class DualLogicComponent : public LogicComponent {
 
 public:
@@ -22,4 +24,6 @@ public:
 private:
 	std::vector<GameEngine::Entity*> m_noteEntities;
 	float notesPos = 0;
+
+	GameEngine::Entity * overlay;
 };

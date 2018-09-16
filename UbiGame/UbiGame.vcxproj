@@ -138,6 +138,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Game\GameComponents\CircleMoveComponent.cpp" />
     <ClCompile Include="Source\Game\GameComponents\ScreenShakeComponent.cpp" />
     <ClCompile Include="Source\Game\GameEntities\DropItem.cpp" />
     <ClCompile Include="Source\Game\Util\MusicGenerator.cpp" />
@@ -173,6 +174,7 @@
     <ClCompile Include="Source\Game\GameEntities\Ticker.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Game\GameComponents\CircleMoveComponent.h" />
     <ClInclude Include="Source\Game\GameComponents\ScreenShakeComponent.h" />
     <ClInclude Include="Source\Game\GameEntities\DropItem.h" />
     <ClInclude Include="Source\Game\Util\MusicGenerator.h" />

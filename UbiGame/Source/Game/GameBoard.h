@@ -4,6 +4,8 @@
 #include <SFML/System/Vector2.hpp>
 #include <vector>
 
+class Ticker;
+
 namespace Game
 {
 	class GameBoard
@@ -19,7 +21,7 @@ namespace Game
 		bool IsGameOver() const { return false; }
 
 	private:
-		void CreateBackground();
+		void CreateBackground(Ticker * ticker);
 	};
 }
 

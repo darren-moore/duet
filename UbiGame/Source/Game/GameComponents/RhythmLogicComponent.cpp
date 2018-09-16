@@ -100,6 +100,7 @@ std::vector<Note*> RhythmLogicComponent::extractData() {
 }
 
 void RhythmLogicComponent::recieveData(std::vector<Note*> notes) {
+	//notes.clear();
 	// Do something with this data
 	int count = 0;
 	int current_index = 0;

@@ -18,6 +18,7 @@ namespace GameEngine
 			MissParticle,
 			QuarterRest,
 			Cloud,
+			DuelOverlay,
 			Count
 		};
 	}	
@@ -33,6 +34,7 @@ namespace GameEngine
 		case eTexture::MissParticle:return "MissParticle.png";
 		case eTexture::QuarterRest:		return "QuarterRest.png";
 		case eTexture::Cloud:		return "cloud.png";
+		case eTexture::DuelOverlay:	return "dualMask.png";
 		default:       return "UnknownTexType";
 		}
 	}
@@ -69,6 +71,7 @@ namespace TextureHelper
 		case GameEngine::eTexture::MissParticle:return sf::Vector2f(1280.f, 720.f);
 		case GameEngine::eTexture::QuarterRest:		return sf::Vector2f(233.f, 330.f);
 		case GameEngine::eTexture::Cloud:		return sf::Vector2f(1500.f, 720.f);
+		case GameEngine::eTexture::DuelOverlay:	return sf::Vector2f(1280.f, 720.f);
 		default:								return sf::Vector2f(-1.f, -1.f);
 		}
 	}

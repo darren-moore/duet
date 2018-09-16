@@ -138,6 +138,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Game\GameEntities\DropItem.cpp" />
     <ClCompile Include="Source\Game\Util\MusicNoteUtils.cpp" />
     <ClCompile Include="Source\Game\GameComponents\DualLogicComponent.cpp" />
     <ClCompile Include="Source\Game\GameComponents\LogicComponent.cpp" />
@@ -170,6 +171,7 @@
     <ClCompile Include="Source\Game\GameEntities\Ticker.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Game\GameEntities\DropItem.h" />
     <ClInclude Include="Source\Game\Util\MusicNoteUtils.h" />
     <ClInclude Include="Source\Game\GameComponents\AccelerationComponent.h" />
     <ClInclude Include="Source\Game\GameComponents\DualLogicComponent.h" />

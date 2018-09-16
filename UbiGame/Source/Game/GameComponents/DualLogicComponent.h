@@ -18,4 +18,8 @@ public:
 
 	std::vector<Note*> extractData() override;
 	void recieveData(std::vector<Note*> notes) override;
+
+private:
+	std::vector<GameEngine::Entity*> m_noteEntities;
+	float notesPos = 0;
 };

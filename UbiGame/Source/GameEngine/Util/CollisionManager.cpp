@@ -29,6 +29,7 @@ void CollisionManager::RegisterCollidable(CollidableComponent* collidable)
 	if (found == m_collidables.end())
 	{
 		m_collidables.push_back(collidable);
+		m_colCompToCollidedComponents[collidable] = std::vector<CollidableComponent*>();
 	}
 }
 
@@ -40,6 +41,7 @@ void CollisionManager::UnRegisterCollidable(CollidableComponent* collidable)
 
 	if (found != m_collidables.end())
 	{
-		m_collidables.erase(found);	
+		m_collidables.erase(found);
+		m_colCompToCollidedComponents.erase(*found);
 	}
 }

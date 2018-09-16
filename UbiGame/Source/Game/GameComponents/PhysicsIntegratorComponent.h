@@ -11,8 +11,8 @@ Integrates velocity and position with semi-implicit time integration.
 namespace Game {
 	class PhysicsIntegratorComponent : public GameEngine::Component {
 	public:
-		PhysicsIntegratorComponent();
-		~PhysicsIntegratorComponent();
+		PhysicsIntegratorComponent() {};
+		~PhysicsIntegratorComponent() {};
 
 		void Update();
 	};

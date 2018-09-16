@@ -33,19 +33,6 @@ GameBoard::GameBoard() {
 	renderComponent->SetZLevel(2);
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(rend);
 
-	/*
-	std::vector<GameEngine::Entity*> noteEntities = GameEngine::MusicNoteUtils::prepareNoteEntities(notes, sf::Vector2f(640, 200));
-	for (auto ne : noteEntities) {
-		ne->AddComponent<Game::VelocityComponent>();
-		ne->AddComponent<Game::AccelerationComponent>();
-		ne->GetComponent<Game::AccelerationComponent>()->acceleration = sf::Vector2f(0, 0);
-		ne->AddComponent<Game::PhysicsIntegratorComponent>();
-		GameEngine::GameEngineMain::GetInstance()->AddEntity(ne);
-	}
-
-	GameEngine::MusicNoteUtils::moveNoteEntities(noteEntities, sf::Vector2f(0, 200));
-	*/
-
 	// Ticker Entity
 	Ticker * ticker = new Ticker();
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(ticker);

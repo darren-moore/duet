@@ -48,6 +48,11 @@ void Controller::Update() {
 		m_pressed = false;
 	}
 
+	// Used for debug purposes.
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Tab)) {
+		swapState();
+	}
+
 	// Update the logic component
 	m_logic->Update();
 

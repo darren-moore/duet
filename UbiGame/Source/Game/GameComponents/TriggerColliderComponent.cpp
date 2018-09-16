@@ -11,6 +11,8 @@ void Game::TriggerColliderComponent::Update()
 	//For the time being just a simple intersection check that moves the entity out of all potential intersect boxes
 	std::vector<CollidableComponent*>& collidables = CollisionManager::GetInstance()->GetCollidables();
 
+	bool collisionFound = false;
+	int collidedComponent = 0;
 
 	for (int a = 0; a < collidables.size(); ++a)
 	{
@@ -22,7 +24,10 @@ void Game::TriggerColliderComponent::Update()
 		AABBRect myBox = GetWorldAABB();
 		AABBRect colideBox = colComponent->GetWorldAABB();
 		if (myBox.intersects(colideBox, intersection)) {
-			// TODO alert the controller.
+			collisionFound = true;
+			collidedComponent = a;
 		}
 	}
+
+	// collidables[collidedComponent]->GetEntity();
 }

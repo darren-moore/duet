@@ -38,14 +38,18 @@ void NoteRenderComponent::Render(sf::RenderTarget* target) {
 void NoteRenderComponent::renderRest(sf::RenderTarget* target) {
 	sf::RectangleShape rect = sf::RectangleShape();
 
-	rect.setSize(sf::Vector2f(50.f, 50.f));
-	rect.setPosition(sf::Vector2f(50.f, 50.f));
+	// rect.setSize(sf::Vector2f(50.f, 50.f));
+	// rect.setPosition(sf::Vector2f(50.f, 50.f));
 
+	GetEntity()->SetSize(sf::Vector2f(80.f, 120.f));
+
+	/*
 	sf::Color col = sf::Color(100, 50, 50);
 	col.b = 255;
 	rect.setFillColor(col);
 
 	//target->draw(rect);
+	*/
 }
 
 void NoteRenderComponent::renderStem(sf::RenderTarget* target) {
@@ -68,7 +72,7 @@ void NoteRenderComponent::renderStem(sf::RenderTarget* target) {
 	sf::Vector2f connectorEnd = connectorStart;
 	
 	
-	float connectorLen = m_note->noteLength * 40;
+	float connectorLen = static_cast<float>(m_note->noteLength * 40);
 	switch (m_note->stemType)
 	{
 	case Note::eStemType::none:

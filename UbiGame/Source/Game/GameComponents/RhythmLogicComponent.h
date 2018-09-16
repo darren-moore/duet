@@ -27,6 +27,7 @@ private:
 	// The 4 bars represented in the screen
 	std::vector<Note*> notes[4];
 	std::vector<float> beats[4];
+	std::vector<GameEngine::Entity*> entities[4];
 	int current;
 	int bpm;
 

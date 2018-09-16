@@ -103,6 +103,9 @@ void Controller::generateParticle() {
 }
 
 void Controller::swapState() {
+	// Save the level data first
+	std::vector<Note*> notes = m_logic->extractData();
+	// Then re-instantiate the components based on the state
 	DestroyComponents();
 	switch (m_state) {
 	case eGameMode::rhythm: {
@@ -117,4 +120,6 @@ void Controller::swapState() {
 		// Technically never supposed to happen
 	} break;
 	}
+	// Add notes data to the new logic component
+	m_logic->recieveData(notes);
 }

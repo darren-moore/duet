@@ -14,6 +14,7 @@ namespace GameEngine
 			FillHit,
 			FillMiss,
 			Metronome,
+			EvilMetronome,
 			None,
 		};
 	}

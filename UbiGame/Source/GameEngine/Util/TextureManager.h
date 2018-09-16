@@ -37,7 +37,7 @@ namespace GameEngine
 		case eTexture::Cloud:		return "cloud.png";
 		case eTexture::DuelOverlay:	return "dualMask.png";
 		case eTexture::Metronome:	return "metronome.png";
-		default:       return "UnknownTexType";
+		default:					return "UnknownTexType";
 		}
 	}
 

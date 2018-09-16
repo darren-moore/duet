@@ -57,10 +57,6 @@ void RhythmLogicComponent::SpacePressed() {
 }
 
 void RhythmLogicComponent::Update() {
-	// Add the metronome if its not yet added but music has started
-	if (!m_metronome && ticker->started()) {
-		createMetronomeSprite();
-	}
 	// We know the bar reset if the ticker tick is less than the last tick
 	if (ticker->getCurrentBarTick() < lastTick) {
 		// Update the current bar as well
@@ -160,19 +156,4 @@ void RhythmLogicComponent::renderQuadNotes(int quad) {
 		// This should never happen...
 	} break;
 	}
-}
-
-void RhythmLogicComponent::createMetronomeSprite(){
-	// Create the metronome sprites
-	m_metronome = new GameEngine::Entity();
-	GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>(m_metronome->AddComponent<GameEngine::SpriteRenderComponent>());
-	render->SetTexture(GameEngine::eTexture::Metronome);
-	render->SetZLevel(3);
-	m_metronome->SetPos(sf::Vector2f(640.f, 600.f));
-	m_metronome->SetSize(sf::Vector2f(256.f, 128.f));
-
-	GameEngine::AnimationComponent* anim = static_cast<GameEngine::AnimationComponent*>(m_metronome->AddComponent <GameEngine::AnimationComponent>());
-	anim->PlayAnim(GameEngine::EAnimationId::Metronome);
-
-	GameEngine::GameEngineMain::GetInstance()->AddEntity(m_metronome);
 }

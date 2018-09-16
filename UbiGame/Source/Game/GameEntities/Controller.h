@@ -44,4 +44,8 @@ private:
 	// Variables for controlling camera shake
 	float center_x, center_y;
 	float offset_x, offset_y;
+
+	// Reference to the metrenome sprite entity
+	GameEngine::Entity * m_metronome;
+	void createMetronomeSpirit();
 };

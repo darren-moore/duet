@@ -55,6 +55,7 @@ void MusicNoteUtils::assignStemTypes(vector<Note*> notes) {
 
 	bool inGroup = false;
 	int initStemHeight = 75;
+	int groupStartPitch = 0;
 	int stemHeight = 75;
 	
 	for (int i = 0; i < notes.size(); i++) {
@@ -91,10 +92,12 @@ void MusicNoteUtils::assignStemTypes(vector<Note*> notes) {
 			else {
 				if (i<notes.size()-1 && notes[i + 1]->noteLength == 3 || notes[i]->noteLength == 3) {
 					notes[i]->stemType = Note::eStemType::halfStart; //in group
+					stemHeight = initStemHeight - 5.f*(groupStartPitch - notes[i]->notePitch);
 				}
 				else if (i<notes.size()-1 && notes[i + 1]->isRest) {
 					if (notes[i]->noteLength != 2) {
 						notes[i]->stemType = Note::eStemType::start; //in group
+						stemHeight = initStemHeight - 5.f*(groupStartPitch - notes[i]->notePitch);
 					}
 					else {
 						notes[i]->stemType = Note::eStemType::halfStart; //not in group
@@ -104,18 +107,25 @@ void MusicNoteUtils::assignStemTypes(vector<Note*> notes) {
 				else if(i<notes.size()-1 && notes[i + 1]->noteLength != notes[i]->noteLength) {
 					if (notes[i]->noteLength == 1) {
 						notes[i]->stemType = Note::eStemType::none; // in group
+						stemHeight = initStemHeight - 5.f*(groupStartPitch - notes[i]->notePitch);
 					}
 					else {
 						notes[i]->stemType = Note::eStemType::halfStart; //in group
+						stemHeight = initStemHeight - 5.f*(groupStartPitch - notes[i]->notePitch);
 					}
 				
 				}
 				else {
 					notes[i]->stemType = Note::eStemType::start; //in group
+					stemHeight = initStemHeight - 5.f*(groupStartPitch - notes[i]->notePitch);
+				}
+				if (endCheck == notes[i]->noteLength) {
+					groupStartPitch = notes[i]->notePitch;
 				}
 			}
 		}
-		notes[i]->stemHeight = stemHeight;
+		notes[i]->stemHeight = 75;
+
 	}
 }
 
@@ -150,7 +160,7 @@ vector<GameEngine::Entity*> MusicNoteUtils::prepareNoteEntities(vector<Note*> no
 
 		renderComponent->setNote(n);
 		position += n->noteLength * 40 / 2;
-		e->SetPos(sf::Vector2f((float)position, initPos.y +n ->notePitch * 5));
+		e->SetPos(sf::Vector2f((float)position, initPos.y));// +n->notePitch * 5));
 		e->SetSize(sf::Vector2f(32, 32));
 		noteEntities.push_back(e);
 
@@ -165,7 +175,7 @@ void MusicNoteUtils::moveNoteEntities(vector<GameEngine::Entity*> entities, sf::
 	for (auto e : entities) {
 		Note* note = e->GetComponent<Game::NoteRenderComponent>()->getNote();
 		position += note->noteLength * 40 / 2;
-		e->SetPos(sf::Vector2f((float)position, pos.y + note->notePitch * 5.f));
+		e->SetPos(sf::Vector2f((float)position, pos.y));// +note->notePitch * 5.f));
 		e->SetSize(sf::Vector2f(32, 32));
 		position += note->noteLength * 40 / 2;
 	}

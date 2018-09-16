@@ -111,6 +111,9 @@
     <ClCompile Include="Source\Game\GameEntities\DropItem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Game\Util\MusicGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\GameEngine\GameEngineMain.h">
@@ -218,5 +221,11 @@
     <ClInclude Include="Source\Game\GameEntities\DropItem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Game\Util\MusicGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Resources\level\level_blocks.txt" />
   </ItemGroup>
 </Project>

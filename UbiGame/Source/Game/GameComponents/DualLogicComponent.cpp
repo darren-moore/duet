@@ -7,6 +7,7 @@
 #include "Game/GameComponents/AccelerationComponent.h"
 #include "Game/GameComponents/PhysicsIntegratorComponent.h"
 #include "Game/GameComponents/TriggerColliderComponent.h"
+#include "Game/Util/MusicGenerator.h"
 
 #include "Game/GameEntities/DropItem.h"
 
@@ -44,7 +45,8 @@ std::vector<Note*> DualLogicComponent::extractData() {
 void DualLogicComponent::recieveData(std::vector<Note*> notes) {
 
 	// Refresh notes with collision component.
-	m_noteEntities = Game::MusicNoteUtils::prepareNoteEntities(notes, sf::Vector2f(notesPos, 200));
+	m_noteEntities = Game::MusicNoteUtils::prepareNoteEntities(Game::MusicGenerator::instance().getBarOfMusic(), sf::Vector2f(notesPos, 200));
+
 	for (auto e : m_noteEntities) {
 		GameEngine::SpriteRenderComponent* rend = static_cast<GameEngine::SpriteRenderComponent*>(e->AddComponent<GameEngine::SpriteRenderComponent>());
 		rend->SetTexture(GameEngine::eTexture::Highlight);

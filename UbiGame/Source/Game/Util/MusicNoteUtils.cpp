@@ -60,52 +60,52 @@ void MusicNoteUtils::assignStemTypes(vector<Note*> notes) {
 		endCheck += notes[i]->noteLength;
 
 		if (notes[i]->noteLength >= 4) {
-			notes[i]->stemType = Note::eStemType::none;
+			notes[i]->stemType = Note::eStemType::none; //not in group
 			stemHeight = initStemHeight;
 			endCheck = endCheck % 4;
 		}
 		else {
 			if (endCheck == 4) {
 				if (i>0  && notes[i-1]->isRest) {
-					notes[i]->stemType = Note::eStemType::halfStart;
+					notes[i]->stemType = Note::eStemType::halfStart; //not in group
 				}
 				else if (i>0 && notes[i]->noteLength != notes[i - 1]->noteLength) {
 					if (notes[i]->noteLength != 2) {
-						notes[i]->stemType = Note::eStemType::halfEnd;
+						notes[i]->stemType = Note::eStemType::halfEnd; //in group
 					}
 					else {
-						notes[i]->stemType = Note::eStemType::end;
+						notes[i]->stemType = Note::eStemType::end; //in group
 					}
 				}
 				else {
-					notes[i]->stemType = Note::eStemType::none;
+					notes[i]->stemType = Note::eStemType::none; //in group
 				}
 
 				endCheck = 0;
 			}
 			else {
 				if (i<notes.size()-1 && notes[i + 1]->noteLength == 3 || notes[i]->noteLength == 3) {
-					notes[i]->stemType = Note::eStemType::halfStart;
+					notes[i]->stemType = Note::eStemType::halfStart; //in group
 				}
 				else if (i<notes.size()-1 && notes[i + 1]->isRest) {
 					if (notes[i]->noteLength != 2) {
-						notes[i]->stemType = Note::eStemType::start;
+						notes[i]->stemType = Note::eStemType::start; //in group
 					}
 					else {
-						notes[i]->stemType = Note::eStemType::halfStart;
+						notes[i]->stemType = Note::eStemType::halfStart; //not in group
 					}
 				}
 				else if(i<notes.size()-1 && notes[i + 1]->noteLength != notes[i]->noteLength) {
 					if (notes[i]->noteLength == 1) {
-						notes[i]->stemType = Note::eStemType::none;
+						notes[i]->stemType = Note::eStemType::none; // in group
 					}
 					else {
-						notes[i]->stemType = Note::eStemType::halfStart;
+						notes[i]->stemType = Note::eStemType::halfStart; //in group
 					}
 				
 				}
 				else {
-					notes[i]->stemType = Note::eStemType::start;
+					notes[i]->stemType = Note::eStemType::start; //in group
 				}
 			}
 		}

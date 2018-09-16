@@ -35,7 +35,7 @@ private:
 
 	// Keep a reference to the ticker to handle state transitioning at the right time
 	Ticker * ticker;
-	int m_beatsElapsed;
+	int m_barsElapsed;
 	float lastTick;
 
 	void setLogicComponent(eGameMode mode);

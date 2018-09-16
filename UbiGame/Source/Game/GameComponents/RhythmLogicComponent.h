@@ -30,6 +30,7 @@ private:
 	std::vector<GameEngine::Entity*> entities[4];
 	int current;
 	int bpm;
+	int bars;
 
 	float lastTick;
 

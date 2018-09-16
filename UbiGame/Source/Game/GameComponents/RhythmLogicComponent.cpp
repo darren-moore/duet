@@ -7,6 +7,7 @@
 #include "Game/Util/MusicGenerator.h"
 
 #include "../GameEntities/Ticker.h"
+#include "../GameEntities/Controller.h"
 
 #include <iostream>
 
@@ -15,6 +16,7 @@ RhythmLogicComponent::RhythmLogicComponent()
 	, beats{}
 	, current(0)
 	, bpm(120)
+	, bars(0)
 	, lastTick(0.f)
 	, entities{}
 {
@@ -63,14 +65,17 @@ void RhythmLogicComponent::Update() {
 		// Update the current bar as well
 		current++;
 		if (current >= 4) current = 0;
+		bars++;
 
 		// Update music based on current quad
 		if (current == 0) notes[2] = Game::MusicGenerator::instance().getBarOfMusic();
 		if (current == 1) notes[3] = Game::MusicGenerator::instance().getBarOfMusic();
 		if (current == 2) notes[0] = Game::MusicGenerator::instance().getBarOfMusic();
 		if (current == 3) notes[1] = Game::MusicGenerator::instance().getBarOfMusic();
-		for (int i = 0; i < 4; ++i) renderQuadNotes(i);
-		for (int i = 0; i < 4; ++i) beats[i] = Game::MusicNoteUtils::convertNotesToBeatTimes(notes[i], bpm);
+		if (bars < NUM_BARS_UNTIL_SWITCH) {
+			for (int i = 0; i < 4; ++i) renderQuadNotes(i);
+			for (int i = 0; i < 4; ++i) beats[i] = Game::MusicNoteUtils::convertNotesToBeatTimes(notes[i], bpm);
+		}
 	}
 	lastTick = ticker->getCurrentBarTick();
 

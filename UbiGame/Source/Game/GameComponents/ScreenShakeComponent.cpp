@@ -19,21 +19,21 @@ ScreenShakeComponent::~ScreenShakeComponent() {
 
 void ScreenShakeComponent::Update() {
 	Component::Update();
+	
+	if (m_lifetime > 0.f) {
+		float dt = GameEngine::GameEngineMain::GetInstance()->GetTimeDelta();
 
-	float dt = GameEngine::GameEngineMain::GetInstance()->GetTimeDelta();
+		// Do the actual screenshake
+		float intensity = m_lifetime / m_initialtime;
+		float x_offset = static_cast<float>(rand() % SHAKE_MULTIPLIER - SHAKE_MULTIPLIER / 2) * intensity;
+		float y_offset = static_cast<float>(rand() % SHAKE_MULTIPLIER - SHAKE_MULTIPLIER / 2) * intensity;
 
-	// Do the actual screenshake
-	float intensity = m_lifetime / m_initialtime;
-	float x_offset = static_cast<float>(rand() % SHAKE_MULTIPLIER - SHAKE_MULTIPLIER / 2) * intensity;
-	float y_offset = static_cast<float>(rand() % SHAKE_MULTIPLIER - SHAKE_MULTIPLIER / 2) * intensity;
+		GameEngine::CameraManager::GetInstance()->GetCameraView().setCenter(center_x + x_offset, center_y + y_offset);
 
-	GameEngine::CameraManager::GetInstance()->GetCameraView().setCenter(center_x + x_offset, center_y + y_offset);
-
-	m_lifetime -= dt;
-
-	if (m_lifetime <= 0.f)
-	{
-		GameEngine::GameEngineMain::GetInstance()->RemoveEntity(GetEntity());
+		m_lifetime -= dt;
+	}
+	else {
+		// Just do nothing, should not cost too much overhead
 	}
 }
 

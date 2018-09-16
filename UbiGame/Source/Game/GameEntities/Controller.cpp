@@ -31,10 +31,13 @@ Controller::Controller(Ticker * ticker, eGameMode mode)
 }
 
 Controller::~Controller() {
-
+	std::cout << "REMOVE!" << std::endl;
 }
 
 void Controller::Update() {
+	// Update components
+	Entity::Update();
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
 		// Only look for the moment the key is pressed
 		if (!m_leftPressed) {
@@ -59,13 +62,8 @@ void Controller::Update() {
 		m_rightPressed = false;
 	}
 
-
-	// Update the logic component
-	m_logic->Update();
-	if (m_shake) m_shake->Update();
-
 	// If we exceed the number of bars until a switch, switch the game state
-	std::cout << "LAST: " << lastTick << ", CUR: " << ticker->getCurrentBarTick() << '\n';
+	// std::cout << "LAST: " << lastTick << ", CUR: " << ticker->getCurrentBarTick() << '\n';
 	if (lastTick > ticker->getCurrentBarTick()) {
 		m_barsElapsed++;
 		if (m_barsElapsed >= NUM_BARS_UNTIL_SWITCH) {

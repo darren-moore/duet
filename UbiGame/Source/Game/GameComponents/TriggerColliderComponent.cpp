@@ -1,6 +1,7 @@
 #include "TriggerColliderComponent.h"
 
 #include <vector>
+#include "GameEngine/GameEngineMain.h"
 #include "GameEngine/Util/CollisionManager.h"
 #include "GameEngine/EntitySystem/Entity.h"
 #include <iostream>
@@ -27,9 +28,14 @@ void Game::TriggerColliderComponent::Update()
 		if (myBox.intersects(colideBox, intersection)) {
 			collisionFound = true;
 			collidedComponent = a;
-			std::cout << "HIT" << std::endl;
+			GameEngine::Entity* e = collidables[collidedComponent]->GetEntity();
+			GameEngine::GameEngineMain::GetInstance()->RemoveEntity(e);
+			GameEngine::GameEngineMain::GetInstance()->RemoveEntity(GetEntity());
+			break;
 		}
 	}
 	
-	// collidables[collidedComponent]->GetEntity();
+	// Remove both components
+	
+
 }

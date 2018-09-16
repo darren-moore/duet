@@ -9,8 +9,9 @@ DropItemEntity::DropItemEntity() {
 
 	//Physics
 	m_velocityComponent = static_cast<Game::VelocityComponent*>(AddComponent<Game::VelocityComponent>());
+	m_velocityComponent->velocity = sf::Vector2f(0, 0);
 	m_accelerationComponent = static_cast<Game::AccelerationComponent*>(AddComponent<Game::AccelerationComponent>());
-	m_accelerationComponent->acceleration = sf::Vector2f(0, 650);
+	m_accelerationComponent->acceleration = sf::Vector2f(0, 2000);
 	m_physicsIntegratorComponent = static_cast<Game::PhysicsIntegratorComponent*>(AddComponent<Game::PhysicsIntegratorComponent>());
 
 	//Animation

@@ -68,16 +68,22 @@ void DualLogicComponent::Update() {
 			toRemove = entities[2];
 			for (auto e : toRemove) GameEngine::GameEngineMain::GetInstance()->RemoveEntity(e);
 			entities.erase(entities.begin() + 2);
+
 			entities.insert(entities.begin() + 2, Game::MusicNoteUtils::prepareNoteEntities(Game::MusicGenerator::instance().getBarOfMusic(), topSpawnPoint));
 			for (auto e : entities[2]) {
 				processNoteEntitiy(e);
 				e->GetComponent<Game::VelocityComponent>()->velocity.x *= -1;
+				GameEngine::GameEngineMain::GetInstance()->AddEntity(e);
 			}
 
 			// create new 5th bar, about to be revealed
 			std::vector<GameEngine::Entity*> newEnts = Game::MusicNoteUtils::prepareNoteEntities(Game::MusicGenerator::instance().getBarOfMusic(), bottomSpawnPoint);
-			for (auto e : newEnts) processNoteEntitiy(e);
+			for (auto e : newEnts) {
+				processNoteEntitiy(e);
+				GameEngine::GameEngineMain::GetInstance()->AddEntity(e);
+			}
 			entities.push_back(newEnts);
+
 		}
 	}
 	lastTick = ticker->getCurrentBarTick();

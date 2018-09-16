@@ -1,24 +1,26 @@
 #include "GameBoard.h"
 
+// Game engine includes
 #include "GameEngine\GameEngineMain.h"
 #include "GameEngine\EntitySystem\Components\CollidableComponent.h"
 #include "GameEngine\EntitySystem\Components\SpriteRenderComponent.h"
-#include "Game/GameComponents/NoteRenderComponent.h"
-#include "Game/GameComponents/StaffRenderComponent.h"
-#include "Game/GameComponents/VelocityComponent.h"
-#include "Game/GameComponents/AccelerationComponent.h"
-#include "Game/GameComponents/PhysicsIntegratorComponent.h"
 #include "GameEngine\Util\CameraManager.h"
-#include "Game/Util/Note.h"
-#include <vector>
 
-#include "Game/Util/MusicNoteUtils.h"
-
-#include "GameEntities/Controller.h"
+// Game includes
 #include "GameComponents/RhythmLogicComponent.h"
 #include "GameComponents/DualLogicComponent.h"
-
+#include "GameComponents/NoteRenderComponent.h"
+#include "GameComponents/StaffRenderComponent.h"
+#include "GameComponents/VelocityComponent.h"
+#include "GameComponents/AccelerationComponent.h"
+#include "GameComponents/PhysicsIntegratorComponent.h"
+#include "GameComponents/CircleMoveComponent.h"
 #include "GameEntities/Ticker.h"
+#include "GameEntities/Controller.h"
+#include "Util/Note.h"
+#include "Util/MusicNoteUtils.h"
+
+#include <vector>
 
 using namespace Game;
 
@@ -42,7 +44,7 @@ GameBoard::GameBoard() {
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(controller);
 
 	// Background Entity
-	CreateBackground();
+	CreateBackground(ticker);
 }
 
 
@@ -57,12 +59,49 @@ void GameBoard::Update()
 
 }
 
-void GameBoard::CreateBackground() {
-	GameEngine::Entity* bgEntity = new GameEngine::Entity();
-	GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>(bgEntity->AddComponent<GameEngine::SpriteRenderComponent>());
-	render->SetTexture(GameEngine::eTexture::BG);
-	render->SetZLevel(0);
-	bgEntity->SetPos(sf::Vector2f(640.f, 360.f));
-	bgEntity->SetSize(sf::Vector2f(1280.f, 720.f));
-	GameEngine::GameEngineMain::GetInstance()->AddEntity(bgEntity);
+void GameBoard::CreateBackground(Ticker * ticker) {
+	{
+		// Set the background image
+		GameEngine::Entity* bgEntity = new GameEngine::Entity();
+		GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>(bgEntity->AddComponent<GameEngine::SpriteRenderComponent>());
+		render->SetTexture(GameEngine::eTexture::BG);
+		render->SetZLevel(0);
+		bgEntity->SetPos(sf::Vector2f(640.f, 360.f));
+		bgEntity->SetSize(sf::Vector2f(1280.f, 720.f));
+		GameEngine::GameEngineMain::GetInstance()->AddEntity(bgEntity);
+	}
+
+	{
+		// Add a cloud in front of the background
+		GameEngine::Entity* cloud = new GameEngine::Entity();
+		GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>(cloud->AddComponent<GameEngine::SpriteRenderComponent>());
+		render->SetTexture(GameEngine::eTexture::Cloud);
+		render->SetZLevel(1);
+		cloud->SetPos(sf::Vector2f(640.f, 400.f));
+		cloud->SetSize(sf::Vector2f(1500.f, 720.f));
+		// Add a circular move component to the cloud
+		CircleMoveComponent * circle = static_cast<CircleMoveComponent*>(cloud->AddComponent<CircleMoveComponent>());
+		circle->setTicker(ticker);
+		circle->setRadius(20.f);
+		circle->setOriginalPos(640.f, 400.f);
+		GameEngine::GameEngineMain::GetInstance()->AddEntity(cloud);
+	}
+
+	{
+		// Add a cloud in front of the background
+		GameEngine::Entity* cloud = new GameEngine::Entity();
+		GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>(cloud->AddComponent<GameEngine::SpriteRenderComponent>());
+		render->SetTexture(GameEngine::eTexture::Cloud);
+		render->SetZLevel(1);
+		cloud->SetPos(sf::Vector2f(640.f, 360.f));
+		cloud->SetSize(sf::Vector2f(1500.f, 720.f));
+		// Add a circular move component to the cloud
+		CircleMoveComponent * circle = static_cast<CircleMoveComponent*>(cloud->AddComponent<CircleMoveComponent>());
+		circle->setTicker(ticker);
+		circle->setRadius(20.f);
+		circle->setOriginalPos(640.f, 400.f);
+		circle->setXOperation(CircleMoveOperation::negative_sin);
+		circle->setYOperation(CircleMoveOperation::negative_cos);
+		GameEngine::GameEngineMain::GetInstance()->AddEntity(cloud);
+	}
 }

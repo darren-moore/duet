@@ -16,6 +16,7 @@ namespace GameEngine
 			BG,
 			TapParticle,
 			MissParticle,
+			Cloud,
 			Count
 		};
 	}	
@@ -29,6 +30,7 @@ namespace GameEngine
 		case eTexture::BG:			return "bg.png";
 		case eTexture::TapParticle: return "TapParticle.png";
 		case eTexture::MissParticle:return "MissParticle.png";
+		case eTexture::Cloud:		return "cloud.png";
 		default:       return "UnknownTexType";
 		}
 	}
@@ -63,6 +65,7 @@ namespace TextureHelper
 		case GameEngine::eTexture::BG:			return sf::Vector2f(1280.f, 720.f);
 		case GameEngine::eTexture::TapParticle:	return sf::Vector2f(1280.f, 720.f);
 		case GameEngine::eTexture::MissParticle:return sf::Vector2f(1280.f, 720.f);
+		case GameEngine::eTexture::Cloud:		return sf::Vector2f(1500.f, 720.f);
 		default:								return sf::Vector2f(-1.f, -1.f);
 		}
 	}

@@ -61,7 +61,7 @@ void DualLogicComponent::Update() {
 		}
 		else {
 			halfTimeFlag = false;
-			if (bars < NUM_BARS_UNTIL_SWITCH) {
+			if (bars < NUM_BARS_UNTIL_DUAL_SWITCH) {
 				// delete first bar, now hidden
 				std::vector<GameEngine::Entity*> toRemove = entities[0];
 				for (auto e : toRemove) GameEngine::GameEngineMain::GetInstance()->RemoveEntity(e);

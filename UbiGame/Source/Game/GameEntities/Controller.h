@@ -6,7 +6,8 @@ Handles player input before dispatching to logic components.
 #include "GameEngine/EntitySystem/Entity.h"
 #include "../Util/Common.h"
 
-#define NUM_BARS_UNTIL_SWITCH 4.f
+#define NUM_BARS_UNTIL_RHYTHM_SWITCH 12.f
+#define NUM_BARS_UNTIL_DUAL_SWITCH 4.f
 
 class LogicComponent;
 class ScreenShakeComponent;

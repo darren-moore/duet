@@ -69,7 +69,7 @@ void RhythmLogicComponent::Update() {
 		if (current == 1) notes[3] = Game::MusicGenerator::instance().getBarOfMusic();
 		if (current == 2) notes[0] = Game::MusicGenerator::instance().getBarOfMusic();
 		if (current == 3) notes[1] = Game::MusicGenerator::instance().getBarOfMusic();
-		if (bars < NUM_BARS_UNTIL_SWITCH) {
+		if (bars < NUM_BARS_UNTIL_RHYTHM_SWITCH) {
 			for (int i = 0; i < 4; ++i) renderQuadNotes(i);
 			for (int i = 0; i < 4; ++i) beats[i] = Game::MusicNoteUtils::convertNotesToBeatTimes(notes[i], bpm);
 		}

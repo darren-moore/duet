@@ -71,7 +71,11 @@ void Controller::Update() {
 	// std::cout << "LAST: " << lastTick << ", CUR: " << ticker->getCurrentBarTick() << '\n';
 	if (lastTick > ticker->getCurrentBarTick()) {
 		m_barsElapsed++;
-		if (m_barsElapsed >= NUM_BARS_UNTIL_SWITCH) {
+		if (m_state == eGameMode::dual && m_barsElapsed >= NUM_BARS_UNTIL_DUAL_SWITCH) {
+			m_barsElapsed = 0;
+			swapState();
+		}
+		if (m_state == eGameMode::rhythm && m_barsElapsed >= NUM_BARS_UNTIL_RHYTHM_SWITCH) {
 			m_barsElapsed = 0;
 			swapState();
 		}

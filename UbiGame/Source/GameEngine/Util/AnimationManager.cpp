@@ -50,6 +50,24 @@ void AnimationManager::InitStaticGameAnimations()
 			15)
 	);
 	*/
+
+	m_animDefinitions.push_back(
+		SAnimationDefinition(
+			EAnimationId::FillHit,
+			eTexture::TapParticle,
+			sf::Vector2i(0, 0),
+			3,
+			24)
+	);
+
+	m_animDefinitions.push_back(
+		SAnimationDefinition(
+			EAnimationId::FillMiss,
+			eTexture::MissParticle,
+			sf::Vector2i(0, 0),
+			3,
+			24)
+	);
 }
 
 

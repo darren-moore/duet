@@ -45,6 +45,11 @@ void LogicComponent::generateParticle(eFillType type) {
 	render->SetZLevel(20);
 	fill->SetPos(sf::Vector2f(640.f, 360.f));
 	fill->SetSize(sf::Vector2f(1280.f, 720.f));
+
+	GameEngine::AnimationComponent* anim = static_cast<GameEngine::AnimationComponent*>(fill->AddComponent<GameEngine::AnimationComponent>());
+	if (type == eFillType::white) anim->PlayAnim(EAnimationId::FillHit);
+	if (type == eFillType::red) anim->PlayAnim(EAnimationId::FillMiss);
+
 	// Set the lifetime for the fill to dissapear after 100 milliseconds
 	GameEngine::ParticleComponent* part = static_cast<GameEngine::ParticleComponent*>(fill->AddComponent<GameEngine::ParticleComponent>());
 	part->SetLifeTime(0.1f);

@@ -15,6 +15,7 @@ namespace GameEngine
 			FillMiss,
 			Metronome,
 			EvilMetronome,
+			Portal,
 			None,
 		};
 	}

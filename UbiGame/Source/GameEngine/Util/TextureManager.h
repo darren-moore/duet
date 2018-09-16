@@ -20,6 +20,7 @@ namespace GameEngine
 			Cloud,
 			DuelOverlay,
 			Metronome,
+			Portal,
 			Count
 		};
 	}	
@@ -37,6 +38,7 @@ namespace GameEngine
 		case eTexture::Cloud:		return "cloud.png";
 		case eTexture::DuelOverlay:	return "dualMask.png";
 		case eTexture::Metronome:	return "metronome.png";
+		case eTexture::Portal:		return "Portal.png";
 		default:					return "UnknownTexType";
 		}
 	}
@@ -75,6 +77,7 @@ namespace TextureHelper
 		case GameEngine::eTexture::Cloud:		return sf::Vector2f(1500.f, 720.f);
 		case GameEngine::eTexture::DuelOverlay:	return sf::Vector2f(1280.f, 720.f);
 		case GameEngine::eTexture::Metronome:	return sf::Vector2f(256.f, 128.f);
+		case GameEngine::eTexture::Portal:		return sf::Vector2f(100.f, 100.f);
 		default:								return sf::Vector2f(-1.f, -1.f);
 		}
 	}

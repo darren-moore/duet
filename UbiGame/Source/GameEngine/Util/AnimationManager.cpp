@@ -55,8 +55,7 @@ void AnimationManager::InitStaticGameAnimations()
 			eTexture::Metronome,
 			sf::Vector2i(0, 0),
 			2,
-			2
-		)
+			2)
 	);
 
 	m_animDefinitions.push_back(
@@ -65,8 +64,16 @@ void AnimationManager::InitStaticGameAnimations()
 			eTexture::Metronome,
 			sf::Vector2i(0, 1),
 			2,
-			2
-		)
+			2)
+	);
+
+	m_animDefinitions.push_back(
+		SAnimationDefinition(
+			EAnimationId::Portal,
+			eTexture::Portal,
+			sf::Vector2i(0, 0),
+			6,
+			20)
 	);
 }
 

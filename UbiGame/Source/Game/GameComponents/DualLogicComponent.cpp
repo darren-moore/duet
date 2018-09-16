@@ -4,7 +4,7 @@
 #include "GameEngine/GameEngineMain.h"
 #include "GameEngine/EntitySystem/Entity.h"
 #include "GameEngine/EntitySystem/Components/SpriteRenderComponent.h"
-#include "GameEngine/EntitySystem/Components/SpriteRenderComponent.h"
+#include "GameEngine/EntitySystem/Components/AnimationComponent.h"
 #include "Game/GameComponents/VelocityComponent.h"
 #include "Game/GameComponents/AccelerationComponent.h"
 #include "Game/GameComponents/PhysicsIntegratorComponent.h"
@@ -20,15 +20,28 @@
 #include <iostream>
 
 DualLogicComponent::DualLogicComponent() {
-	// Add a background overlay
-	overlay = new GameEngine::Entity();
-	overlay->SetPos(sf::Vector2f(640.f, 360.f));
-	overlay->SetSize(sf::Vector2f(1280.f, 720.f));
-	GameEngine::SpriteRenderComponent* sprite = static_cast<GameEngine::SpriteRenderComponent*>(overlay->AddComponent<GameEngine::SpriteRenderComponent>());
-	sprite->SetTexture(GameEngine::eTexture::DuelOverlay);
-	sprite->SetZLevel(20);
-	GameEngine::GameEngineMain::GetInstance()->AddEntity(overlay);
-
+	{
+		// Add a background overlay
+		overlay = new GameEngine::Entity();
+		overlay->SetPos(sf::Vector2f(640.f, 360.f));
+		overlay->SetSize(sf::Vector2f(1280.f, 720.f));
+		GameEngine::SpriteRenderComponent* sprite = static_cast<GameEngine::SpriteRenderComponent*>(overlay->AddComponent<GameEngine::SpriteRenderComponent>());
+		sprite->SetTexture(GameEngine::eTexture::DuelOverlay);
+		sprite->SetZLevel(20);
+		GameEngine::GameEngineMain::GetInstance()->AddEntity(overlay);
+	}
+	{
+		// Add a portal
+		portal = new GameEngine::Entity();
+		portal->SetPos(sf::Vector2f(100.f, 60.f));
+		portal->SetSize(sf::Vector2f(100.f, 100.f));
+		GameEngine::SpriteRenderComponent* sprite = static_cast<GameEngine::SpriteRenderComponent*>(portal->AddComponent<GameEngine::SpriteRenderComponent>());
+		sprite->SetTexture(GameEngine::eTexture::Portal);
+		sprite->SetZLevel(21);
+		GameEngine::AnimationComponent* anim = static_cast<GameEngine::AnimationComponent*>(portal->AddComponent<GameEngine::AnimationComponent>());
+		anim->PlayAnim(GameEngine::EAnimationId::Portal);
+		GameEngine::GameEngineMain::GetInstance()->AddEntity(portal);
+	}
 }
 
 DualLogicComponent::~DualLogicComponent() {
@@ -39,10 +52,10 @@ DualLogicComponent::~DualLogicComponent() {
 	}
 
 	GameEngine::GameEngineMain::GetInstance()->RemoveEntity(overlay);
+	GameEngine::GameEngineMain::GetInstance()->RemoveEntity(portal);
 }
 
 void DualLogicComponent::SpacePressed() {
-	std::cout << "DUAL LOGIC PRESSED!" << std::endl;
 	GameEngine::Entity* e = new Game::DropItemEntity();
 	e->SetPos(sf::Vector2f(100,60));
 	e->SetSize(sf::Vector2f(32,32));

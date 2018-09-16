@@ -38,5 +38,8 @@ private:
 	int current = 0;
 	int bpm = 120;
 	int bars = 0;
+
+	// Entities to keep a reference to
 	GameEngine::Entity * overlay;
+	GameEngine::Entity * portal;
 };

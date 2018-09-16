@@ -120,6 +120,8 @@ void Controller::swapState() {
 	case eGameMode::dual: {
 		setLogicComponent(eGameMode::rhythm);
 		m_state = eGameMode::rhythm;
+		// Swap the metronome texture
+		m_metronome->GetComponent<GameEngine::AnimationComponent>()->PlayAnim(GameEngine::EAnimationId::Metronome);
 	} break;
 	default: {
 		// Technically never supposed to happen

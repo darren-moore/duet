@@ -20,6 +20,7 @@ Ticker::~Ticker() {
 }
 
 void Ticker::OnAddToWorld() {
+	Entity::OnAddToWorld();
 	m_soundManager->PlayMusic("Resources/snd/track2.wav");
 	m_soundManager->setMusicLoop(true);
 	timer = 0.f;

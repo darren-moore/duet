@@ -65,7 +65,7 @@ void Controller::Update() {
 }
 
 void Controller::OnAddToWorld() {
-
+	Entity::OnAddToWorld();
 }
 
 void Controller::OnRemoveFromWorld() {

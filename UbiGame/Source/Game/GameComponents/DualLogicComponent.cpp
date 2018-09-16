@@ -22,9 +22,9 @@ DualLogicComponent::~DualLogicComponent() {
 
 void DualLogicComponent::SpacePressed() {
 	std::cout << "DUAL LOGIC PRESSED!" << std::endl;
-	GameEngine::Entity* e = new Game::DropItemEntity();
-	e->SetPos(sf::Vector2f(10,10));
-	e->SetSize(sf::Vector2f(30,30));
+	//GameEngine::Entity* e = new Game::DropItemEntity();
+	//e->SetPos(sf::Vector2f(10,10));
+	//e->SetSize(sf::Vector2f(30,30));
 }
 
 void DualLogicComponent::Update() {

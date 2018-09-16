@@ -1,7 +1,5 @@
 #include "ParticleComponent.h"
 
-
-
 using namespace GameEngine;
 
 ParticleComponent::ParticleComponent()

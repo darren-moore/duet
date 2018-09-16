@@ -11,12 +11,11 @@ namespace GameEngine
 		enum type
 		{
 			None = -1,
-			Player = 0,
+			Note = 0,
 			Highlight,
 			BG,
 			TapParticle,
 			MissParticle,
-			Note,
 			QuarterRest,
 			Count
 		};
@@ -26,12 +25,11 @@ namespace GameEngine
 	{
 		switch (texture)
 		{
-		case eTexture::Player:		return "note.png";
+		case eTexture::Note:		return "note.png";
 		case eTexture::Highlight:	return "highlight.png";
 		case eTexture::BG:			return "bg.png";
 		case eTexture::TapParticle: return "TapParticle.png";
 		case eTexture::MissParticle:return "MissParticle.png";
-		case eTexture::Note:		return "note.png";
 		case eTexture::QuarterRest:		return "QuarterRest.png";
 		default:       return "UnknownTexType";
 		}
@@ -62,12 +60,11 @@ namespace TextureHelper
 	{
 		switch (texture)
 		{
-		case GameEngine::eTexture::Player:		return sf::Vector2f(32.f, 32.f);
+		case GameEngine::eTexture::Note:		return sf::Vector2f(32.f, 32.f);
 		case GameEngine::eTexture::Highlight:	return sf::Vector2f(640.f, 180.f);
 		case GameEngine::eTexture::BG:			return sf::Vector2f(1280.f, 720.f);
 		case GameEngine::eTexture::TapParticle:	return sf::Vector2f(1280.f, 720.f);
 		case GameEngine::eTexture::MissParticle:return sf::Vector2f(1280.f, 720.f);
-		case GameEngine::eTexture::Note:		return sf::Vector2f(32.f, 32.f);
 		case GameEngine::eTexture::QuarterRest:		return sf::Vector2f(233.f, 330.f);
 		default:								return sf::Vector2f(-1.f, -1.f);
 		}

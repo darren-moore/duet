@@ -37,7 +37,7 @@ vector<Note*> MusicNoteUtils::parseMusic(std::string musicString) {
 
 		}
 		else {	// Note, not a rest
-			int delimPos = ns.find(',');
+			int delimPos = static_cast<int>(ns.find(','));
 			string s1 = ns.substr(delimPos+1, ns.size() - 1);
 			string s2 = ns.substr(0, delimPos);
 			n = new Note(stoi(s1), stoi(s2), Note::eStemType::none, 0, true, false);
@@ -139,7 +139,7 @@ vector<GameEngine::Entity*> MusicNoteUtils::prepareNoteEntities(vector<Note*> no
 	for (auto n : notes) {
 		GameEngine::Entity* e = new GameEngine::Entity();
 		Game::NoteRenderComponent* renderComponent = static_cast<Game::NoteRenderComponent*>(e->AddComponent<Game::NoteRenderComponent>());
-		renderComponent->SetTexture(GameEngine::eTexture::Player);
+		renderComponent->SetTexture(GameEngine::eTexture::Note);
 		renderComponent->SetZLevel(2);
 
 		renderComponent->setNote(n);

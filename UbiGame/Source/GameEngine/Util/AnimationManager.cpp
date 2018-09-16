@@ -19,26 +19,6 @@ AnimationManager::~AnimationManager()
 
 void AnimationManager::InitStaticGameAnimations()
 {
-	m_animDefinitions.push_back
-	(
-		SAnimationDefinition(
-			EAnimationId::BirdIdle,
-			eTexture::Player,
-			sf::Vector2i(0, 0),
-			10,
-			3)
-	);
-
-	m_animDefinitions.push_back
-	(
-		SAnimationDefinition(
-			EAnimationId::BirdFly,
-			eTexture::Player,
-			sf::Vector2i(0, 1),
-			10,
-			15)
-	);
-
 	/*
 	m_animDefinitions.push_back
 	(

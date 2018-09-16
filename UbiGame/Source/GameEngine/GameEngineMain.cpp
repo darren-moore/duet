@@ -22,6 +22,7 @@ GameEngineMain::GameEngineMain()
 	: m_renderTarget(nullptr)	
 	, m_windowInitialised(false)
 	, m_gameBoard(nullptr)
+	, m_isFullScreen(false)
 {
 	CreateAndSetUpWindow();
 	//Load predefined textures
@@ -51,7 +52,10 @@ void GameEngineMain::OnInitialised()
 
 void GameEngineMain::CreateAndSetUpWindow()
 {
-	m_renderWindow = new sf::RenderWindow(sf::VideoMode((unsigned int)WINDOW_WIDTH, (unsigned int)WINDOW_HEIGHT), "Duet");
+
+
+	m_renderWindow = new sf::RenderWindow(sf::VideoMode((unsigned int)WINDOW_WIDTH, (unsigned int)WINDOW_HEIGHT), "Duet", sf::Style::Default);
+
 	m_renderTarget = m_renderWindow;
 }
 
@@ -151,6 +155,18 @@ void GameEngineMain::UpdateWindowEvents()
 	sf::Event event;
 	while (m_renderWindow->pollEvent(event))
 	{
+		if (event.type == sf::Keyboard::F)
+		{
+			if (m_isFullScreen) {
+				m_renderWindow->create(sf::VideoMode((unsigned int)WINDOW_WIDTH, (unsigned int)WINDOW_HEIGHT), "Hack The North", sf::Style::Default);
+			}
+			else {
+				m_renderWindow->create(sf::VideoMode((unsigned int)WINDOW_WIDTH, (unsigned int)WINDOW_HEIGHT), "Hack The North", sf::Style::Fullscreen);
+			}
+
+			m_isFullScreen = !m_isFullScreen;
+		}
+
 		if (event.type == sf::Event::Closed)
 		{
 			m_renderWindow->close();

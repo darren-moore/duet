@@ -30,6 +30,7 @@ RhythmLogicComponent::RhythmLogicComponent()
 		GameEngine::SpriteRenderComponent * rend = static_cast<GameEngine::SpriteRenderComponent*>(m_sprite->AddComponent<GameEngine::SpriteRenderComponent>());
 		rend->SetTexture(GameEngine::eTexture::Highlight);
 		rend->SetZLevel(1);
+		rend->SetAlpha(128);
 		GameEngine::GameEngineMain::GetInstance()->AddEntity(m_sprite);
 	}
 }

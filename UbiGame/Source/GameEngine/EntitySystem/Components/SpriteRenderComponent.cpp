@@ -114,3 +114,7 @@ void SpriteRenderComponent::Render(sf::RenderTarget* target)
 
 	target->draw(m_sprite);
 }
+
+void SpriteRenderComponent::SetAlpha(float alpha) {
+	m_sprite.setColor(sf::Color(255, 255, 255, alpha));
+}

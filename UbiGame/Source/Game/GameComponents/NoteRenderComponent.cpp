@@ -45,7 +45,7 @@ void NoteRenderComponent::renderRest(sf::RenderTarget* target) {
 	col.b = 255;
 	rect.setFillColor(col);
 
-	target->draw(rect);
+	//target->draw(rect);
 }
 
 void NoteRenderComponent::renderStem(sf::RenderTarget* target) {
@@ -53,7 +53,7 @@ void NoteRenderComponent::renderStem(sf::RenderTarget* target) {
 	sf::Vector2f stemBase = GetEntity()->GetPos();
 
 	if (m_note->isStemUp) {
-		stemBase.x += GetEntity()->GetSize().x/2;
+		stemBase.x += GetEntity()->GetSize().x/2 - 4;
 		stemBase.y -= m_note->stemHeight;
 		rect.setPosition(stemBase);
 	}
@@ -105,12 +105,11 @@ void NoteRenderComponent::renderStem(sf::RenderTarget* target) {
 	}
 }
 
-// TODO
 void NoteRenderComponent::renderDot(sf::RenderTarget* target) {
 	sf::CircleShape circ(GetEntity()->GetSize().x/7.f);
 
 	sf::Vector2f noteSize = GetEntity()->GetSize();
-	circ.setPosition(GetEntity()->GetPos() + sf::Vector2f(1.f * noteSize.x, noteSize.y * .2f));
+	circ.setPosition(GetEntity()->GetPos() + sf::Vector2f(.6f * noteSize.x, noteSize.y * .2f));
 
 	sf::Color col = sf::Color(100, 50, 250);
 	col.b = 255;

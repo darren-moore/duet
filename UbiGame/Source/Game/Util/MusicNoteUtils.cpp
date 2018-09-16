@@ -156,11 +156,11 @@ vector<GameEngine::Entity*> MusicNoteUtils::prepareNoteEntities(vector<Note*> no
 		GameEngine::Entity* e = new GameEngine::Entity();
 		Game::NoteRenderComponent* renderComponent = static_cast<Game::NoteRenderComponent*>(e->AddComponent<Game::NoteRenderComponent>());
 		renderComponent->SetTexture(GameEngine::eTexture::Note);
-		renderComponent->SetZLevel(2);
+		renderComponent->SetZLevel(5);
 
 		renderComponent->setNote(n);
 		position += n->noteLength * 40 / 2;
-		e->SetPos(sf::Vector2f((float)position, initPos.y));// +n->notePitch * 5));
+		e->SetPos(sf::Vector2f((float)position, initPos.y+50));// +n->notePitch * 5));
 		e->SetSize(sf::Vector2f(32, 32));
 		noteEntities.push_back(e);
 
@@ -175,7 +175,7 @@ void MusicNoteUtils::moveNoteEntities(vector<GameEngine::Entity*> entities, sf::
 	for (auto e : entities) {
 		Note* note = e->GetComponent<Game::NoteRenderComponent>()->getNote();
 		position += note->noteLength * 40 / 2;
-		e->SetPos(sf::Vector2f((float)position, pos.y));// +note->notePitch * 5.f));
+		e->SetPos(sf::Vector2f((float)position, pos.y+50));// +note->notePitch * 5.f));
 		e->SetSize(sf::Vector2f(32, 32));
 		position += note->noteLength * 40 / 2;
 	}

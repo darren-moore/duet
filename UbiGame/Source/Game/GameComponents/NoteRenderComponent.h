@@ -17,7 +17,7 @@ namespace Game {
 
 	private:
 		Note* m_note;
-		float m_stemHeight = 75.f;
+		float m_stemHeight = 0;
 
 		void renderStem(sf::RenderTarget* target);
 		void renderRest(sf::RenderTarget* target);

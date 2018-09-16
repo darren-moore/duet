@@ -9,23 +9,28 @@ using namespace Game;
 
 void NoteRenderComponent::Render(sf::RenderTarget* target) {
 
-	__super::Render(target);
-
+	
 	if (!target)
 	{
 		return;
 	}
 
 	if (m_note->isRest) {
+		__super::SetTexture(GameEngine::eTexture::QuarterRest);
+		__super::UpdateSpriteParams();
 		renderRest(target);
 	}
 	else {
+		__super::SetTexture(GameEngine::eTexture::Note);
+		__super::UpdateSpriteParams();
 		renderStem(target);
 	}
 
 	if (m_note->isDotted) {
 		renderDot(target);
 	}
+
+	__super::Render(target);
 
 }
 
@@ -49,14 +54,14 @@ void NoteRenderComponent::renderStem(sf::RenderTarget* target) {
 
 	if (m_note->isStemUp) {
 		stemBase.x += GetEntity()->GetSize().x/2;
-		stemBase.y -= m_stemHeight;
+		stemBase.y -= m_note->stemHeight;
 		rect.setPosition(stemBase);
 	}
 	else {
 		stemBase.x -= GetEntity()->GetSize().x / 2;
 		rect.setPosition(stemBase);
 	}
-	rect.setSize(sf::Vector2f(4.f, m_stemHeight));
+	rect.setSize(sf::Vector2f(4.f, m_note->stemHeight));
 
 	sf::RectangleShape connectorRect = sf::RectangleShape();
 	sf::Vector2f connectorStart = stemBase;

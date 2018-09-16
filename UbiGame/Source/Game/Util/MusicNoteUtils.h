@@ -13,5 +13,6 @@ namespace Game {
 		std::vector<GameEngine::Entity*> prepareNoteEntities(std::vector<Note*> notes, sf::Vector2f initPos);
 		void moveNoteEntities(std::vector<GameEngine::Entity*> entities, sf::Vector2f pos);
 		void assignStemTypes(std::vector<Note*> notes);
+		#define NOTE_PITCH_TRANSLATE 5.f;
 	}
 }

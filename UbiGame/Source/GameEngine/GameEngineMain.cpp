@@ -52,7 +52,10 @@ void GameEngineMain::OnInitialised()
 
 void GameEngineMain::CreateAndSetUpWindow()
 {
-	m_renderWindow = new sf::RenderWindow(sf::VideoMode((unsigned int)WINDOW_WIDTH, (unsigned int)WINDOW_HEIGHT), "Hack The North", sf::Style::Default);
+
+
+	m_renderWindow = new sf::RenderWindow(sf::VideoMode((unsigned int)WINDOW_WIDTH, (unsigned int)WINDOW_HEIGHT), "Duet", sf::Style::Default);
+
 	m_renderTarget = m_renderWindow;
 }
 
@@ -152,8 +155,9 @@ void GameEngineMain::UpdateWindowEvents()
 	sf::Event event;
 	while (m_renderWindow->pollEvent(event))
 	{
-		if (event.type == sf::Keyboard::F)
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::F))
 		{
+			
 			if (m_isFullScreen) {
 				m_renderWindow->create(sf::VideoMode((unsigned int)WINDOW_WIDTH, (unsigned int)WINDOW_HEIGHT), "Hack The North", sf::Style::Default);
 			}

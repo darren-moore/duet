@@ -16,7 +16,8 @@
 
 Controller::Controller(Ticker * ticker, eGameMode mode)
 	: m_state(eGameMode::rhythm)
-	, m_pressed(false)
+	, m_leftPressed(false)
+	, m_rightPressed(false)
 	, m_logic(nullptr)
 	, ticker(ticker)
 	, m_barsElapsed(0)
@@ -37,26 +38,28 @@ void Controller::Update() {
 	// Update components
 	Entity::Update();
 
-	// Look for key inputs
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) || 
-		sf::Keyboard::isKeyPressed(sf::Keyboard::Left)  ||
-		sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) 
-	{
-		// Only look for the moment the space bar is pressed
-		if (!m_pressed) {
-			m_pressed = true;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+		// Only look for the moment the key is pressed
+		if (!m_leftPressed) {
+			m_leftPressed = true;
 			// Call the handler function of the logic component
 			m_logic->SpacePressed();
 		}
 	}
 	else {
-		// Reset the pressed flag once the space bar is no longer pressed
-		m_pressed = false;
+		// Reset the pressed flag once the is no longer pressed
+		m_leftPressed = false;
 	}
 
-	// Used for debug purposes.
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Tab)) {
-		swapState();
+	// Likewise for the right key.
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+		if (!m_rightPressed) {
+			m_rightPressed = true;
+				m_logic->SpacePressed();
+		}
+	}
+	else {
+		m_rightPressed = false;
 	}
 
 	// If we exceed the number of bars until a switch, switch the game state

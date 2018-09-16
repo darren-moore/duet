@@ -63,6 +63,14 @@ void RhythmLogicComponent::Update() {
 		// Update the current bar as well
 		current++;
 		if (current >= 4) current = 0;
+
+		// Update music based on current quad
+		if (current == 0) notes[2] = Game::MusicGenerator::instance().getBarOfMusic();
+		if (current == 1) notes[3] = Game::MusicGenerator::instance().getBarOfMusic();
+		if (current == 2) notes[0] = Game::MusicGenerator::instance().getBarOfMusic();
+		if (current == 3) notes[1] = Game::MusicGenerator::instance().getBarOfMusic();
+		for (int i = 0; i < 4; ++i) renderQuadNotes(i);
+		for (int i = 0; i < 4; ++i) beats[i] = Game::MusicNoteUtils::convertNotesToBeatTimes(notes[i], bpm);
 	}
 	lastTick = ticker->getCurrentBarTick();
 
@@ -71,6 +79,7 @@ void RhythmLogicComponent::Update() {
 	if (current == 1) m_sprite->SetPos(sf::Vector2f( 640.f + 320.f, 200.f));
 	if (current == 2) m_sprite->SetPos(sf::Vector2f( 320.f, 400.f));
 	if (current == 3) m_sprite->SetPos(sf::Vector2f( 640.f + 320.f, 400.f));
+
 }
 
 void RhythmLogicComponent::OnAddToWorld() {

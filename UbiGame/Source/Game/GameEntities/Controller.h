@@ -29,7 +29,7 @@ private:
 	// This is probably bad design but I don't have the energy to think of anything else
 	eGameMode m_state;
 	
-	bool m_pressed;
+	bool m_leftPressed, m_rightPressed;
 	LogicComponent * m_logic;
 	ScreenShakeComponent * m_shake;
 

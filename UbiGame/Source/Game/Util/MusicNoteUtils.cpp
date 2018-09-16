@@ -27,38 +27,20 @@ std::vector<std::string> split(const std::string &s, char delim){
 	return elems;
 }
 
-//vector<Note*> MusicNoteUtils::parseMusic(std::string musicString) {
-//	vector<string> noteStrings = split(musicString, ' ');
-//	vector<Note*> notes;
-//	for (const auto& ns : noteStrings) {
-//		Note* n;
-//		if (ns[0] == '_') {
-//			n = new Note(stoi(ns.substr(1,ns.size() - 1)), Note::eStemType::none, true, true);
-//		}
-//		else {
-//			n = new Note(stoi(ns), Note::eStemType::none, true, false);
-//		}
-//		notes.push_back(n);
-//	}
-//
-//	assignStemTypes(notes);
-//	return notes;
-//}
-
 vector<Note*> MusicNoteUtils::parseMusic(std::string musicString) {
 	vector<string> noteStrings = split(musicString, ' ');
 	vector<Note*> notes;
 	for (const auto& ns : noteStrings) {
 		Note* n;
 		if (ns[0] == '_') {	// It's a rest.
-			n = new Note(stoi(ns.substr(1, ns.size() - 1)), 0, Note::eStemType::none, true, true);
+			n = new Note(stoi(ns.substr(1, ns.size() - 1)), 0, Note::eStemType::none, 0, true, true);
 
 		}
 		else {	// Note, not a rest
 			int delimPos = ns.find(',');
 			string s1 = ns.substr(delimPos+1, ns.size() - 1);
 			string s2 = ns.substr(0, delimPos);
-			n = new Note(stoi(s1), stoi(s2), Note::eStemType::none, true, false);
+			n = new Note(stoi(s1), stoi(s2), Note::eStemType::none, 0, true, false);
 		}
 		notes.push_back(n);
 	}
@@ -69,14 +51,17 @@ vector<Note*> MusicNoteUtils::parseMusic(std::string musicString) {
 
 void MusicNoteUtils::assignStemTypes(vector<Note*> notes) {
 	int endCheck = 0;
-
 	int beatCounter = 0;
 
+	int initStemHeight = 75;
+	int stemHeight = 75;
+	
 	for (int i = 0; i < notes.size(); i++) {
 		endCheck += notes[i]->noteLength;
 
 		if (notes[i]->noteLength >= 4) {
-			notes[i]->stemType = Note::eStemType::none;	
+			notes[i]->stemType = Note::eStemType::none;
+			stemHeight = initStemHeight;
 			endCheck = endCheck % 4;
 		}
 		else {
@@ -124,6 +109,7 @@ void MusicNoteUtils::assignStemTypes(vector<Note*> notes) {
 				}
 			}
 		}
+		notes[i]->stemHeight = stemHeight;
 	}
 }
 
@@ -158,8 +144,8 @@ vector<GameEngine::Entity*> MusicNoteUtils::prepareNoteEntities(vector<Note*> no
 
 		renderComponent->setNote(n);
 		position += n->noteLength * 40 / 2;
-		e->SetPos(sf::Vector2f((float)position, initPos.y + n->notePitch * 5));
-		e->SetSize(sf::Vector2f(30, 30));
+		e->SetPos(sf::Vector2f((float)position, initPos.y));// +n->notePitch * 5));
+		e->SetSize(sf::Vector2f(32, 32));
 		noteEntities.push_back(e);
 
 		position += n->noteLength * 40 / 2;
@@ -173,8 +159,8 @@ void MusicNoteUtils::moveNoteEntities(vector<GameEngine::Entity*> entities, sf::
 	for (auto e : entities) {
 		Note* note = e->GetComponent<Game::NoteRenderComponent>()->getNote();
 		position += note->noteLength * 40 / 2;
-		e->SetPos(sf::Vector2f((float)position, pos.y + note->notePitch * 5));
-		e->SetSize(sf::Vector2f(30, 30));
+		e->SetPos(sf::Vector2f((float)position, pos.y));//+ note->notePitch * 5.f));
+		e->SetSize(sf::Vector2f(32, 32));
 		position += note->noteLength * 40 / 2;
 	}
 

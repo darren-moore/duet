@@ -17,6 +17,7 @@ namespace GameEngine
 			TapParticle,
 			MissParticle,
 			Note,
+			QuarterRest,
 			Count
 		};
 	}	
@@ -31,6 +32,7 @@ namespace GameEngine
 		case eTexture::TapParticle: return "TapParticle.png";
 		case eTexture::MissParticle:return "MissParticle.png";
 		case eTexture::Note:		return "note.png";
+		case eTexture::QuarterRest:		return "QuarterRest.png";
 		default:       return "UnknownTexType";
 		}
 	}
@@ -66,6 +68,7 @@ namespace TextureHelper
 		case GameEngine::eTexture::TapParticle:	return sf::Vector2f(1280.f, 720.f);
 		case GameEngine::eTexture::MissParticle:return sf::Vector2f(1280.f, 720.f);
 		case GameEngine::eTexture::Note:		return sf::Vector2f(32.f, 32.f);
+		case GameEngine::eTexture::QuarterRest:		return sf::Vector2f(233.f, 330.f);
 		default:								return sf::Vector2f(-1.f, -1.f);
 		}
 	}

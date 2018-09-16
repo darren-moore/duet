@@ -20,7 +20,7 @@ namespace GameEngine
 		void SetTexture(eTexture::type texture);
 		void SetTileIndex(sf::Vector2i vect) { m_tileIndex = vect; }
 		void SetTileIndex(int xIdx, int yIdx) { m_tileIndex = sf::Vector2i(xIdx, yIdx); }
-
+		eTexture::type GetTexture() { return m_texture; }
 		void UpdateSpriteParams();
 
 	private:

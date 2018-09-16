@@ -135,7 +135,7 @@ vector<float> MusicNoteUtils::convertNotesToBeatTimes(vector<Note*> notes, int b
 		if (!note->isRest) {
 			beatTimes.push_back(currentTime);
 		}
-		float noteTime = (note->noteLength)/16.f;
+		float noteTime = (note->noteLength)/4.f;
 		noteTime /= (bpm / 60);
 		currentTime += noteTime;
 	}

@@ -97,6 +97,10 @@ void GameEngine::SoundManager::setMusicLoop(bool loop) {
 	sm_music.setLoop(loop);
 }
 
+float GameEngine::SoundManager::getCurrentMusicDuration() const {
+	return sm_music.getDuration().asSeconds();
+}
+
 SoundManager::SoundId SoundManager::CreateNewSoundResource(std::string const& filename)
 {
 	SoundManager::SoundId resourceId = sm_soundResources.size();

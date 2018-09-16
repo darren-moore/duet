@@ -12,6 +12,10 @@ class GameEngine::Entity;
 
 class RhythmLogicComponent : public LogicComponent {
 
+	enum class eFillType {
+		white, red
+	};
+
 public:
 	RhythmLogicComponent();
 	~RhythmLogicComponent();
@@ -35,6 +39,7 @@ private:
 
 	float DistanceToNearestNote(float secs);
 	void renderQuadNotes(int quad);
+	void generateParticle(eFillType type);
 
 	// Reference to the highlight sprite entity
 	GameEngine::Entity * m_sprite;

@@ -2,7 +2,6 @@
 
 // Engine includes
 #include "GameEngine/GameEngineMain.h"
-#include "GameEngine/EntitySystem/Components/ParticleComponent.h"
 #include "GameEngine/EntitySystem/Components/SpriteRenderComponent.h"
 
 // Game code includes
@@ -39,8 +38,6 @@ void Controller::Update() {
 			m_pressed = true;
 			// Call the handler function of the logic component
 			m_logic->SpacePressed();
-			// Add a beat tap particle
-			generateParticle();
 		}
 	}
 	else {
@@ -86,20 +83,6 @@ void Controller::setLogicComponent(eGameMode mode) {
 		// Technically never supposed to happen
 	} break;
 	}
-}
-
-void Controller::generateParticle() {
-	GameEngine::Entity* fill = new GameEngine::Entity();
-	// Setup the sprite for the fill
-	GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>(fill->AddComponent<GameEngine::SpriteRenderComponent>());
-	render->SetTexture(GameEngine::eTexture::TapParticle);
-	render->SetZLevel(20);
-	fill->SetPos(sf::Vector2f(640.f, 360.f));
-	fill->SetSize(sf::Vector2f(1280.f, 720.f));
-	// Set the lifetime for the fill to dissapear after 100 milliseconds
-	GameEngine::ParticleComponent* part = static_cast<GameEngine::ParticleComponent*>(fill->AddComponent<GameEngine::ParticleComponent>());
-	part->SetLifeTime(0.1f);
-	GameEngine::GameEngineMain::GetInstance()->AddEntity(fill);
 }
 
 void Controller::swapState() {

@@ -36,6 +36,11 @@ void Ticker::Update() {
 		if (timer > step * NUM_BEATS_IN_BAR) {
 			timer = 0.f;
 		}
+		// If the song is over, set playing to false
+		if (m_soundManager->GetCurrentMusicOffset() > m_soundManager->getCurrentMusicDuration()) {
+			m_playing = false;
+			timer = 0.f;
+		}
 	}
 	else {
 		// Only start the ticking once the music is playing

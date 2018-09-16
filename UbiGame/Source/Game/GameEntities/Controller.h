@@ -37,6 +37,5 @@ private:
 	float lastTick;
 
 	void setLogicComponent(eGameMode mode);
-	void generateParticle();
 	void swapState();
 };

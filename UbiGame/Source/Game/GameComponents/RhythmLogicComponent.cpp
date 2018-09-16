@@ -3,6 +3,7 @@
 #include "GameEngine/GameEngineMain.h"
 #include "Game/Util/MusicNoteUtils.h"
 #include "GameEngine/EntitySystem/Entity.h"
+#include "GameEngine/EntitySystem/Components/ParticleComponent.h"
 #include "GameEngine/EntitySystem/Components/SpriteRenderComponent.h"
 
 #include "../GameEntities/Ticker.h"
@@ -39,8 +40,15 @@ RhythmLogicComponent::~RhythmLogicComponent() {
 }
 
 void RhythmLogicComponent::SpacePressed() {
-	float secs = ticker->getCurrentBarTick();
-	std::cout << "RHYTHM LOGIC PRESSED @ " << secs << ", nearest: " << DistanceToNearestNote(secs) << std::endl;
+	// Get the difference from tap to nearest beat
+	float dist = DistanceToNearestNote(ticker->getCurrentBarTick());
+	if (dist < 0.1) {
+		generateParticle(eFillType::white);
+	}
+	else {
+		// TODO: make sure this isn't the first 
+		generateParticle(eFillType::red);
+	}
 }
 
 void RhythmLogicComponent::Update() {
@@ -92,16 +100,15 @@ void RhythmLogicComponent::recieveData(std::vector<Note*> notes) {
 	}
 }
 
-float RhythmLogicComponent::DistanceToNearestNote(float beat) {
+float RhythmLogicComponent::DistanceToNearestNote(float secs) {
 	// Since we are assuming no rests for now, can safely assume 0 will be a beat
-	float min = beat;
-	float total = 0;
-	for (int i = 0; i < beats[current].size() - 1; ++i) {
-		total += beats[current][i];
-		if (std::abs(total - beat) < min) {
-			min = std::abs(total - beat);
+	float min = secs;
+	for (float beat : beats[current]) {
+		if (std::abs(beat - secs) < min) {
+			min = std::abs(beat - secs);
 		}
 	}
+	std::cout << "HIT @ " << secs << ", " << "MIN @ " << min << std::endl;
 	return min;
 }
 
@@ -133,4 +140,19 @@ void RhythmLogicComponent::renderQuadNotes(int quad) {
 		// This should never happen...
 	} break;
 	}
+}
+
+void RhythmLogicComponent::generateParticle(eFillType type) {
+	GameEngine::Entity* fill = new GameEngine::Entity();
+	// Setup the sprite for the fill
+	GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>(fill->AddComponent<GameEngine::SpriteRenderComponent>());
+	if (type == eFillType::white) render->SetTexture(GameEngine::eTexture::TapParticle);
+	if (type == eFillType::red) render->SetTexture(GameEngine::eTexture::MissParticle);
+	render->SetZLevel(20);
+	fill->SetPos(sf::Vector2f(640.f, 360.f));
+	fill->SetSize(sf::Vector2f(1280.f, 720.f));
+	// Set the lifetime for the fill to dissapear after 100 milliseconds
+	GameEngine::ParticleComponent* part = static_cast<GameEngine::ParticleComponent*>(fill->AddComponent<GameEngine::ParticleComponent>());
+	part->SetLifeTime(0.1f);
+	GameEngine::GameEngineMain::GetInstance()->AddEntity(fill);
 }

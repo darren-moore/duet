@@ -6,7 +6,7 @@ Handles player input before dispatching to logic components.
 #include "GameEngine/EntitySystem/Entity.h"
 #include "../Util/Common.h"
 
-#define NUM_BARS_UNTIL_SWITCH 4.f
+#define NUM_BARS_UNTIL_SWITCH 16.f
 
 class LogicComponent;
 class ScreenShakeComponent;
@@ -29,7 +29,7 @@ private:
 	// This is probably bad design but I don't have the energy to think of anything else
 	eGameMode m_state;
 	
-	bool m_pressed;
+	bool m_leftPressed, m_rightPressed;
 	LogicComponent * m_logic;
 	ScreenShakeComponent * m_shake;
 

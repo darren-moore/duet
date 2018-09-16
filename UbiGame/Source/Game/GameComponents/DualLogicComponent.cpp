@@ -52,7 +52,7 @@ void DualLogicComponent::recieveData(std::vector<Note*> notes) {
 		rend->SetTexture(GameEngine::eTexture::Highlight);
 		rend->SetZLevel(1);
 		Game::VelocityComponent* v = static_cast<Game::VelocityComponent*>(e->AddComponent<Game::VelocityComponent>());
-		v->velocity = sf::Vector2f(-320, 0);
+		v->velocity = sf::Vector2f(-160, 0);
 		e->AddComponent<Game::AccelerationComponent>();
 		e->AddComponent<Game::PhysicsIntegratorComponent>();
 		Game::TriggerColliderComponent* col = static_cast<Game::TriggerColliderComponent*>(e->AddComponent<Game::TriggerColliderComponent>());

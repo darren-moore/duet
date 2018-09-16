@@ -7,6 +7,12 @@ DropItemEntity::DropItemEntity() {
 	m_renderComponent->SetTexture(GameEngine::eTexture::Player);
 	m_renderComponent->SetZLevel(2);
 
+	//Physics
+	m_velocityComponent = static_cast<Game::VelocityComponent*>(AddComponent<Game::VelocityComponent>());
+	m_accelerationComponent = static_cast<Game::AccelerationComponent*>(AddComponent<Game::AccelerationComponent>());
+	m_accelerationComponent->acceleration = sf::Vector2f(0, 650);
+	m_physicsIntegratorComponent = static_cast<Game::PhysicsIntegratorComponent*>(AddComponent<Game::PhysicsIntegratorComponent>());
+
 	//Animation
 	//m_animComponent = static_cast<GameEngine::AnimationComponent*>(AddComponent<GameEngine::AnimationComponent>());
 
@@ -32,4 +38,12 @@ DropItemEntity::DropItemEntity() {
 
 DropItemEntity::~DropItemEntity() {
 
+}
+
+void DropItemEntity::OnAddToWorld() {
+	__super::OnAddToWorld();
+}
+
+void DropItemEntity::OnRemoveFromWorld() {
+	__super::OnRemoveFromWorld();
 }

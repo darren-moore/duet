@@ -3,6 +3,7 @@
 #include <vector>
 #include "GameEngine/Util/CollisionManager.h"
 #include "GameEngine/EntitySystem/Entity.h"
+#include <iostream>
 
 using namespace GameEngine;
 
@@ -26,8 +27,9 @@ void Game::TriggerColliderComponent::Update()
 		if (myBox.intersects(colideBox, intersection)) {
 			collisionFound = true;
 			collidedComponent = a;
+			std::cout << "HIT" << std::endl;
 		}
 	}
-
+	
 	// collidables[collidedComponent]->GetEntity();
 }

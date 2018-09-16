@@ -3,7 +3,6 @@
 #include "GameEngine/GameEngineMain.h"
 #include "Game/Util/MusicNoteUtils.h"
 #include "GameEngine/EntitySystem/Entity.h"
-#include "GameEngine/EntitySystem/Components/ParticleComponent.h"
 #include "GameEngine/EntitySystem/Components/SpriteRenderComponent.h"
 
 #include "../GameEntities/Ticker.h"
@@ -140,19 +139,4 @@ void RhythmLogicComponent::renderQuadNotes(int quad) {
 		// This should never happen...
 	} break;
 	}
-}
-
-void RhythmLogicComponent::generateParticle(eFillType type) {
-	GameEngine::Entity* fill = new GameEngine::Entity();
-	// Setup the sprite for the fill
-	GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>(fill->AddComponent<GameEngine::SpriteRenderComponent>());
-	if (type == eFillType::white) render->SetTexture(GameEngine::eTexture::TapParticle);
-	if (type == eFillType::red) render->SetTexture(GameEngine::eTexture::MissParticle);
-	render->SetZLevel(20);
-	fill->SetPos(sf::Vector2f(640.f, 360.f));
-	fill->SetSize(sf::Vector2f(1280.f, 720.f));
-	// Set the lifetime for the fill to dissapear after 100 milliseconds
-	GameEngine::ParticleComponent* part = static_cast<GameEngine::ParticleComponent*>(fill->AddComponent<GameEngine::ParticleComponent>());
-	part->SetLifeTime(0.1f);
-	GameEngine::GameEngineMain::GetInstance()->AddEntity(fill);
 }

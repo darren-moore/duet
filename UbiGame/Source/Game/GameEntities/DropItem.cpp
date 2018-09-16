@@ -4,7 +4,7 @@ using namespace Game;
 DropItemEntity::DropItemEntity() {
 	//Render 
 	m_renderComponent = static_cast<GameEngine::SpriteRenderComponent*>(AddComponent<GameEngine::SpriteRenderComponent>());
-	m_renderComponent->SetTexture(GameEngine::eTexture::Player);
+	m_renderComponent->SetTexture(GameEngine::eTexture::Note);
 	m_renderComponent->SetZLevel(2);
 
 	//Physics

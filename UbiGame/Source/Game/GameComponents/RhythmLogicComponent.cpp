@@ -4,6 +4,7 @@
 #include "Game/Util/MusicNoteUtils.h"
 #include "GameEngine/EntitySystem/Entity.h"
 #include "GameEngine/EntitySystem/Components/SpriteRenderComponent.h"
+#include "Game/Util/MusicGenerator.h"
 
 #include "../GameEntities/Ticker.h"
 
@@ -17,8 +18,8 @@ RhythmLogicComponent::RhythmLogicComponent()
 	, lastTick(0.f)
 	, entities{}
 {
-	// Initialize all the bars to have 4/4 for now
-	for (int i = 0; i < 4; ++i) notes[i] = Game::MusicNoteUtils::parseMusic("0,4 5,4 10,4 14,4");
+
+	for (int i = 0; i < 4; ++i) notes[i] = Game::MusicGenerator::instance().getBarOfMusic();
 	for (int i = 0; i < 4; ++i) beats[i] = Game::MusicNoteUtils::convertNotesToBeatTimes(notes[i], bpm);
 	
 	// Add the highlights entity to the world

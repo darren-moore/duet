@@ -111,7 +111,11 @@
     <ClCompile Include="Source\Game\GameEntities\DropItem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="Source\Game\GameComponents\ScreenShakeComponent.cpp">
+=======
+    <ClCompile Include="Source\Game\Util\MusicGenerator.cpp">
+>>>>>>> b8bc2b3bff141fd53f9f293bfc397fac872cc39f
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -221,8 +225,17 @@
     <ClInclude Include="Source\Game\GameEntities\DropItem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="Source\Game\GameComponents\ScreenShakeComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+=======
+    <ClInclude Include="Source\Game\Util\MusicGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Resources\level\level_blocks.txt" />
+>>>>>>> b8bc2b3bff141fd53f9f293bfc397fac872cc39f
   </ItemGroup>
 </Project>

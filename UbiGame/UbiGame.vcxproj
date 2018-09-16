@@ -140,6 +140,7 @@
   <ItemGroup>
     <ClCompile Include="Source\Game\GameComponents\ScreenShakeComponent.cpp" />
     <ClCompile Include="Source\Game\GameEntities\DropItem.cpp" />
+    <ClCompile Include="Source\Game\Util\MusicGenerator.cpp" />
     <ClCompile Include="Source\Game\Util\MusicNoteUtils.cpp" />
     <ClCompile Include="Source\Game\GameComponents\DualLogicComponent.cpp" />
     <ClCompile Include="Source\Game\GameComponents\LogicComponent.cpp" />
@@ -174,6 +175,7 @@
   <ItemGroup>
     <ClInclude Include="Source\Game\GameComponents\ScreenShakeComponent.h" />
     <ClInclude Include="Source\Game\GameEntities\DropItem.h" />
+    <ClInclude Include="Source\Game\Util\MusicGenerator.h" />
     <ClInclude Include="Source\Game\Util\MusicNoteUtils.h" />
     <ClInclude Include="Source\Game\GameComponents\AccelerationComponent.h" />
     <ClInclude Include="Source\Game\GameComponents\DualLogicComponent.h" />
@@ -207,6 +209,9 @@
     <ClInclude Include="Source\Game\GameEntities\Ticker.h" />
     <ClInclude Include="Source\Game\Util\Common.h" />
     <ClInclude Include="Source\Game\Util\Note.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Resources\level\level_blocks.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

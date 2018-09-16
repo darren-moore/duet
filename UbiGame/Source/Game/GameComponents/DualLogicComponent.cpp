@@ -21,3 +21,12 @@ void DualLogicComponent::Update() {
 void DualLogicComponent::OnAddToWorld() {
 
 }
+
+std::vector<Note*> DualLogicComponent::extractData() {
+	// Return the data to be used upon state switching
+	return std::vector<Note*>();
+}
+
+void DualLogicComponent::recieveData(std::vector<Note*> notes) {
+	// Do something with this data
+}

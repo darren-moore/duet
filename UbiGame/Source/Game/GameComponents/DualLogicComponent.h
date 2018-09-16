@@ -16,4 +16,6 @@ public:
 	void Update() override;
 	void OnAddToWorld() override;
 
+	std::vector<Note*> extractData() override;
+	void recieveData(std::vector<Note*> notes) override;
 };

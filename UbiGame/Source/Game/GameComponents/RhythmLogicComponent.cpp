@@ -57,6 +57,15 @@ void RhythmLogicComponent::OnAddToWorld() {
 	for (int i = 0; i < 4; ++i) renderQuadNotes(i);
 }
 
+std::vector<Note*> RhythmLogicComponent::extractData() {
+	// Return the data to be used upon state switching
+	return std::vector<Note*>();
+}
+
+void RhythmLogicComponent::recieveData(std::vector<Note*> notes) {
+	// Do something with this data
+}
+
 float RhythmLogicComponent::DistanceToNearestNote(float beat) {
 	// Since we are assuming no rests for now, can safely assume 0 will be a beat
 	float min = beat;

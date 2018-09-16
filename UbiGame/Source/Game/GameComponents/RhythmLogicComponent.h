@@ -20,6 +20,9 @@ public:
 
 	void Update() override;
 	void OnAddToWorld() override;
+
+	virtual std::vector<Note*> extractData() override;
+	void recieveData(std::vector<Note*> notes) override;
 private:
 	// The 4 bars represented in the screen
 	std::vector<Note*> notes[4];

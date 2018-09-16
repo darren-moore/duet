@@ -4,7 +4,9 @@
 #include "GameEngine\GameEngineMain.h"
 #include "GameEngine\EntitySystem\Components\CollidableComponent.h"
 #include "GameEngine\EntitySystem\Components\SpriteRenderComponent.h"
+#include "GameEngine\EntitySystem\Components\AnimationComponent.h"
 #include "GameEngine\Util\CameraManager.h"
+#include "GameEngine\Util\AnimationManager.h"
 
 // Game includes
 #include "GameComponents/RhythmLogicComponent.h"
@@ -92,7 +94,7 @@ void GameBoard::CreateBackground(Ticker * ticker) {
 		GameEngine::Entity* cloud = new GameEngine::Entity();
 		GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>(cloud->AddComponent<GameEngine::SpriteRenderComponent>());
 		render->SetTexture(GameEngine::eTexture::Cloud);
-		render->SetZLevel(1);
+		render->SetZLevel(2);
 		cloud->SetPos(sf::Vector2f(640.f, 360.f));
 		cloud->SetSize(sf::Vector2f(1500.f, 720.f));
 		// Add a circular move component to the cloud

@@ -15,6 +15,8 @@ public:
 	~Ticker();
 
 	inline int getBPM() const { return m_bpm; }
+	// Below function is not quite accurate
+	inline bool started() const { return m_soundManager->GetCurrentMusicOffset() > 0; }
 
 	void OnAddToWorld() override;
 	void OnRemoveFromWorld() override;

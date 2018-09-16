@@ -12,8 +12,8 @@ namespace Game {
 		DropItemEntity();
 		~DropItemEntity();
 
-		virtual void OnAddToWorld() override {};
-		virtual void OnRemoveFromWorld() override {};
+		virtual void OnAddToWorld() override;
+		virtual void OnRemoveFromWorld() override;
 
 	protected:
 		GameEngine::SpriteRenderComponent* m_renderComponent;

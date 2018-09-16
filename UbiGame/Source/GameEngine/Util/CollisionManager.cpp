@@ -42,6 +42,6 @@ void CollisionManager::UnRegisterCollidable(CollidableComponent* collidable)
 	if (found != m_collidables.end())
 	{
 		m_collidables.erase(found);
-		m_colCompToCollidedComponents.erase(*found);
+		m_colCompToCollidedComponents.erase((CollidableComponent*)&found);
 	}
 }

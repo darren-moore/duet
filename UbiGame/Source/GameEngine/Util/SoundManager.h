@@ -41,6 +41,7 @@ namespace GameEngine
 
 		float GetCurrentMusicOffset() const;
 		void setMusicLoop(bool loop);
+		float getCurrentMusicDuration() const;
 
 	private:
 		bool IsValidSoundId(SoundId const soundId) const;

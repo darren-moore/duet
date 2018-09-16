@@ -10,6 +10,11 @@ The base class for different gameplay states.
 class Ticker;
 struct Note;
 
+// Enum definition for particle type
+enum class eFillType {
+	white, red
+};
+
 class LogicComponent : public GameEngine::Component {
 
 public:
@@ -26,6 +31,8 @@ public:
 	// Just recieve the data as a vector of notes
 	virtual std::vector<Note*> extractData();
 	virtual void recieveData(std::vector<Note*> notes);
+
+	void generateParticle(eFillType type);
 
 protected:
 	// A reference to a ticker

@@ -39,8 +39,15 @@ RhythmLogicComponent::~RhythmLogicComponent() {
 }
 
 void RhythmLogicComponent::SpacePressed() {
-	float secs = ticker->getCurrentBarTick();
-	std::cout << "RHYTHM LOGIC PRESSED @ " << secs << ", nearest: " << DistanceToNearestNote(secs) << std::endl;
+	// Get the difference from tap to nearest beat
+	float dist = DistanceToNearestNote(ticker->getCurrentBarTick());
+	if (dist < 0.1) {
+		generateParticle(eFillType::white);
+	}
+	else {
+		// TODO: make sure this isn't the first 
+		generateParticle(eFillType::red);
+	}
 }
 
 void RhythmLogicComponent::Update() {
@@ -92,16 +99,15 @@ void RhythmLogicComponent::recieveData(std::vector<Note*> notes) {
 	}
 }
 
-float RhythmLogicComponent::DistanceToNearestNote(float beat) {
+float RhythmLogicComponent::DistanceToNearestNote(float secs) {
 	// Since we are assuming no rests for now, can safely assume 0 will be a beat
-	float min = beat;
-	float total = 0;
-	for (int i = 0; i < beats[current].size() - 1; ++i) {
-		total += beats[current][i];
-		if (std::abs(total - beat) < min) {
-			min = std::abs(total - beat);
+	float min = secs;
+	for (float beat : beats[current]) {
+		if (std::abs(beat - secs) < min) {
+			min = std::abs(beat - secs);
 		}
 	}
+	std::cout << "HIT @ " << secs << ", " << "MIN @ " << min << std::endl;
 	return min;
 }
 

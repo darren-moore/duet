@@ -14,6 +14,8 @@ namespace GameEngine
 			BirdIdle,
 			BirdFly,
 			Smoke,
+			FillHit,
+			FillMiss,
 			None,
 		};
 	}

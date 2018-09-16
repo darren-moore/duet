@@ -14,6 +14,8 @@ public:
 	Ticker(int bpm = 120);
 	~Ticker();
 
+	inline int getBPM() const { return m_bpm; }
+
 	void OnAddToWorld() override;
 	void OnRemoveFromWorld() override;
 

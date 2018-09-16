@@ -57,7 +57,7 @@ DualLogicComponent::~DualLogicComponent() {
 
 void DualLogicComponent::SpacePressed() {
 	GameEngine::Entity* e = new Game::DropItemEntity();
-	e->SetPos(sf::Vector2f(100,100));
+	e->SetPos(sf::Vector2f(100,60));
 	e->SetSize(sf::Vector2f(32,32));
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(e);
 }
@@ -68,35 +68,45 @@ void DualLogicComponent::Update() {
 	// We know the bar reset if the ticker tick is less than the last tick
 	if (ticker->getCurrentBarTick() < lastTick) {
 		// Update the current bar as well
+		bars++;
 		if (!halfTimeFlag) {
 			halfTimeFlag = true;
 		}
 		else {
 			halfTimeFlag = false;
-			// delete first bar, now hidden
-			std::vector<GameEngine::Entity*> toRemove = entities[0];
-			for (auto e : toRemove) GameEngine::GameEngineMain::GetInstance()->RemoveEntity(e);
-			entities.erase(entities.begin());
+			if (bars < NUM_BARS_UNTIL_SWITCH) {
+				// delete first bar, now hidden
+				std::vector<GameEngine::Entity*> toRemove = entities[0];
+				for (auto e : toRemove) GameEngine::GameEngineMain::GetInstance()->RemoveEntity(e);
+				entities.erase(entities.begin());
 
-			toRemove = entities[2];
-			for (auto e : toRemove) GameEngine::GameEngineMain::GetInstance()->RemoveEntity(e);
-			entities.erase(entities.begin() + 2);
+				toRemove = entities[2];
+				for (auto e : toRemove) GameEngine::GameEngineMain::GetInstance()->RemoveEntity(e);
+				entities.erase(entities.begin() + 2);
 
-			entities.insert(entities.begin() + 2, Game::MusicNoteUtils::prepareNoteEntities(Game::MusicGenerator::instance().getBarOfMusic(), topSpawnPoint));
-			for (auto e : entities[2]) {
-				processNoteEntitiy(e);
-				e->GetComponent<Game::VelocityComponent>()->velocity.x *= -1;
-				GameEngine::GameEngineMain::GetInstance()->AddEntity(e);
+				std::vector<Note*> newMusic = Game::MusicGenerator::instance().getBarOfMusic();
+				entities.insert(entities.begin() + 2, Game::MusicNoteUtils::prepareNoteEntities(newMusic, topSpawnPoint));
+				for (auto e : entities[2]) {
+					processNoteEntitiy(e);
+					e->GetComponent<Game::VelocityComponent>()->velocity.x *= -1;
+					GameEngine::GameEngineMain::GetInstance()->AddEntity(e);
+				}
+
+				// create new 5th bar, about to be revealed
+				std::vector<GameEngine::Entity*> newEnts = Game::MusicNoteUtils::prepareNoteEntities(Game::MusicGenerator::instance().getBarOfMusic(), bottomSpawnPoint);
+				for (auto e : newEnts) {
+					processNoteEntitiy(e);
+					GameEngine::GameEngineMain::GetInstance()->AddEntity(e);
+				}
+				entities.push_back(newEnts);
+
+
+				notes.erase(notes.begin());
+				notes[2] = notes[3];
+				notes[3] = notes[4];
+				notes.push_back(newMusic);
+
 			}
-
-			// create new 5th bar, about to be revealed
-			std::vector<GameEngine::Entity*> newEnts = Game::MusicNoteUtils::prepareNoteEntities(Game::MusicGenerator::instance().getBarOfMusic(), bottomSpawnPoint);
-			for (auto e : newEnts) {
-				processNoteEntitiy(e);
-				GameEngine::GameEngineMain::GetInstance()->AddEntity(e);
-			}
-			entities.push_back(newEnts);
-
 		}
 	}
 	lastTick = ticker->getCurrentBarTick();
@@ -112,10 +122,22 @@ void DualLogicComponent::OnAddToWorld() {
 
 std::vector<Note*> DualLogicComponent::extractData() {
 	// Return the data to be used upon state switching
-	return std::vector<Note*>();
+	std::vector<Note*> sentNotes;
+	for (int i = 1; i < 5; i++) {
+		for (auto note : notes[i]) {
+			sentNotes.push_back(note);
+		}
+	}
+
+	return sentNotes;
 }
 
 void DualLogicComponent::recieveData(std::vector<Note*> notesIn) {
+	for (auto notesVec : notes) {
+		notesVec.clear();
+	}
+	notes.clear();
+
 	int count = 0;
 	int current_index = 0;
 	std::vector<Note*> notesArray[4];
@@ -139,7 +161,6 @@ void DualLogicComponent::recieveData(std::vector<Note*> notesIn) {
 
 
 	// Refresh notes with collision component.
-	//m_noteEntities = Game::MusicNoteUtils::prepareNoteEntities(notes, sf::Vector2f(notesPos, 200));
 	for (int i = 0; i < 6; i++) {
 		std::vector<GameEngine::Entity*> noteEntities = Game::MusicNoteUtils::prepareNoteEntities(notes[i], sf::Vector2f(0,0));
 		switch (i)

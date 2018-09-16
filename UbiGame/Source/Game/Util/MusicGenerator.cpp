@@ -1,10 +1,13 @@
 #include "MusicGenerator.h"
 #include "Game/Util/MusicNoteUtils.h"
 #include <fstream>
+#include <stdio.h>
+#include <ctime>
 
 using namespace Game;
 
 MusicGenerator::MusicGenerator() {
+	srand(time(NULL));
 	std::ifstream myfile(m_levelFileName);
 	std::string line;
 	if (myfile.is_open()) {

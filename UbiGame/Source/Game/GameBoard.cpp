@@ -28,9 +28,6 @@ using namespace Game;
 
 GameBoard::GameBoard() {
 
-	std::vector<Note*> notes = Game::MusicNoteUtils::parseMusic("_2 3,1 4,1 5,1 4,1 6,2 _1 14,1 10,1 6,1 3,2 0,2");
-	std::vector<float> beats = Game::MusicNoteUtils::convertNotesToBeatTimes(notes, 60);
-
 	// Add the staff render entities to the game
 	GameEngine::Entity* rend = new GameEngine::Entity();
 	Game::StaffRenderComponent* renderComponent = static_cast<Game::StaffRenderComponent*>(rend->AddComponent<Game::StaffRenderComponent>());

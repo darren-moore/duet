@@ -16,4 +16,6 @@ struct Note{
 	bool isRest;
 	bool isDotted;
 
+	float distToNextNote;
+
 };

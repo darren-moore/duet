@@ -28,7 +28,7 @@ void DualLogicComponent::SpacePressed() {
 	/*
 	GameEngine::Entity* e = new Game::DropItemEntity();
 	e->SetPos(sf::Vector2f(100,100));
-	e->SetSize(sf::Vector2f(30,30));
+	e->SetSize(sf::Vector2f(32,32));
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(e);
 	*/
 }
@@ -57,7 +57,7 @@ void DualLogicComponent::recieveData(std::vector<Note*> notes) {
 		rend->SetTexture(GameEngine::eTexture::Highlight);
 		rend->SetZLevel(1);
 		Game::VelocityComponent* v = static_cast<Game::VelocityComponent*>(e->AddComponent<Game::VelocityComponent>());
-		v->velocity = sf::Vector2f(-50, 0);
+		v->velocity = sf::Vector2f(-320, 0);
 		e->AddComponent<Game::AccelerationComponent>();
 		e->AddComponent<Game::PhysicsIntegratorComponent>();
 		Game::TriggerColliderComponent* col = static_cast<Game::TriggerColliderComponent*>(e->AddComponent<Game::TriggerColliderComponent>());

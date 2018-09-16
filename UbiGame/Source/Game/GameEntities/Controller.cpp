@@ -19,7 +19,7 @@ Controller::Controller(Ticker * ticker, eGameMode mode)
 	, m_pressed(false)
 	, m_logic(nullptr)
 	, ticker(ticker)
-	, m_beatsElapsed(0)
+	, m_barsElapsed(0)
 	, lastTick(0.f)
 {
 	// Initialize the logic based on the gamemode
@@ -62,10 +62,11 @@ void Controller::Update() {
 	if (m_shake) m_shake->Update();
 
 	// If we exceed the number of bars until a switch, switch the game state
+	std::cout << "LAST: " << lastTick << ", CUR: " << ticker->getCurrentBarTick() << '\n';
 	if (lastTick > ticker->getCurrentBarTick()) {
-		m_beatsElapsed++;
-		if (m_beatsElapsed >= NUM_BARS_UNTIL_SWITCH) {
-			m_beatsElapsed = 0;
+		m_barsElapsed++;
+		if (m_barsElapsed >= NUM_BARS_UNTIL_SWITCH) {
+			m_barsElapsed = 0;
 			swapState();
 		}
 	}

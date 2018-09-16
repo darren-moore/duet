@@ -55,6 +55,8 @@ void Controller::Update() {
 		swapState();
 	}
 
+
+
 	// Update the logic component
 	m_logic->Update();
 	if (m_shake) m_shake->Update();

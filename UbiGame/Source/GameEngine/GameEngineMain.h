@@ -58,6 +58,7 @@ namespace GameEngine
 		Game::GameBoard*    m_gameBoard;
 		float				m_lastDT;
 
+		bool m_isFullScreen;
 		bool m_windowInitialised;
 	};
 }

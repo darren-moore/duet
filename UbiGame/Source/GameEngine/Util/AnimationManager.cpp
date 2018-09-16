@@ -58,6 +58,16 @@ void AnimationManager::InitStaticGameAnimations()
 			2
 		)
 	);
+
+	m_animDefinitions.push_back(
+		SAnimationDefinition(
+			EAnimationId::EvilMetronome,
+			eTexture::Metronome,
+			sf::Vector2i(0, 1),
+			2,
+			2
+		)
+	);
 }
 
 

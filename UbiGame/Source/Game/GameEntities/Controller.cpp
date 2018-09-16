@@ -3,6 +3,7 @@
 // Engine includes
 #include "GameEngine/GameEngineMain.h"
 #include "GameEngine/EntitySystem/Components/SpriteRenderComponent.h"
+#include "GameEngine/EntitySystem/Components/AnimationComponent.h"
 #include "GameEngine/Util/CameraManager.h"
 
 // Game code includes
@@ -37,6 +38,10 @@ Controller::~Controller() {
 void Controller::Update() {
 	// Update components
 	Entity::Update();
+
+	if (!m_metronome && ticker->started()) {
+		createMetronomeSpirit();
+	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
 		// Only look for the moment the key is pressed
@@ -109,6 +114,8 @@ void Controller::swapState() {
 	case eGameMode::rhythm: {
 		setLogicComponent(eGameMode::dual);
 		m_state = eGameMode::dual;
+		// Swap the metronome texture
+		m_metronome->GetComponent<GameEngine::AnimationComponent>()->PlayAnim(GameEngine::EAnimationId::EvilMetronome);
 	} break;
 	case eGameMode::dual: {
 		setLogicComponent(eGameMode::rhythm);
@@ -126,4 +133,19 @@ void Controller::swapState() {
 
 	// Add notes data to the new logic component
 	m_logic->recieveData(notes);
+}
+
+void Controller::createMetronomeSpirit() {
+	// Create the metronome sprites
+	m_metronome = new GameEngine::Entity();
+	GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>(m_metronome->AddComponent<GameEngine::SpriteRenderComponent>());
+	render->SetTexture(GameEngine::eTexture::Metronome);
+	render->SetZLevel(3);
+	m_metronome->SetPos(sf::Vector2f(640.f, 600.f));
+	m_metronome->SetSize(sf::Vector2f(256.f, 128.f));
+
+	GameEngine::AnimationComponent* anim = static_cast<GameEngine::AnimationComponent*>(m_metronome->AddComponent <GameEngine::AnimationComponent>());
+	anim->PlayAnim(GameEngine::EAnimationId::Metronome);
+
+	GameEngine::GameEngineMain::GetInstance()->AddEntity(m_metronome);
 }

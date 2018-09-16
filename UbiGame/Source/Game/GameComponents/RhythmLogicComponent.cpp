@@ -99,12 +99,12 @@ std::vector<Note*> RhythmLogicComponent::extractData() {
 	return data;
 }
 
-void RhythmLogicComponent::recieveData(std::vector<Note*> notes) {
-	//notes.clear();
+void RhythmLogicComponent::recieveData(std::vector<Note*> notesIn) {
+	for (int i = 0; i < 4;i++) notes[i].clear();
 	// Do something with this data
 	int count = 0;
 	int current_index = 0;
-	for (Note * n : notes) {
+	for (Note * n : notesIn) {
 		this->notes[current_index].push_back(n);
 		count += n->noteLength;
 		// If we have now counted for more than a bar, switch to the next bar

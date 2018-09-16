@@ -44,7 +44,7 @@ DualLogicComponent::~DualLogicComponent() {
 void DualLogicComponent::SpacePressed() {
 	std::cout << "DUAL LOGIC PRESSED!" << std::endl;
 	GameEngine::Entity* e = new Game::DropItemEntity();
-	e->SetPos(sf::Vector2f(100,100));
+	e->SetPos(sf::Vector2f(100,60));
 	e->SetSize(sf::Vector2f(32,32));
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(e);
 }

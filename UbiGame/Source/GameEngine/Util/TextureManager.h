@@ -25,7 +25,7 @@ namespace GameEngine
 	{
 		switch (texture)
 		{
-		case eTexture::Player:		return "player.png";
+		case eTexture::Player:		return "note.png";
 		case eTexture::Highlight:	return "highlight.png";
 		case eTexture::BG:			return "bg.png";
 		case eTexture::TapParticle: return "TapParticle.png";

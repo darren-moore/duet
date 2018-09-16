@@ -7,6 +7,7 @@
 #include "Game/Util/MusicGenerator.h"
 
 #include "../GameEntities/Ticker.h"
+#include "../GameEntities/Controller.h"
 
 #include <iostream>
 
@@ -15,19 +16,22 @@ RhythmLogicComponent::RhythmLogicComponent()
 	, beats{}
 	, current(0)
 	, bpm(120)
+	, bars(0)
 	, lastTick(0.f)
 	, entities{}
 {
-
+	// Add renderable components of the notes to the engine
 	for (int i = 0; i < 4; ++i) notes[i] = Game::MusicGenerator::instance().getBarOfMusic();
 	for (int i = 0; i < 4; ++i) beats[i] = Game::MusicNoteUtils::convertNotesToBeatTimes(notes[i], bpm);
-	
-	// Add the highlights entity to the world
-	m_sprite = new GameEngine::Entity();
-	GameEngine::SpriteRenderComponent * rend = static_cast<GameEngine::SpriteRenderComponent*>(m_sprite->AddComponent<GameEngine::SpriteRenderComponent>());
-	rend->SetTexture(GameEngine::eTexture::Highlight);
-	rend->SetZLevel(1);
-	GameEngine::GameEngineMain::GetInstance()->AddEntity(m_sprite);
+	for (int i = 0; i < 4; ++i) renderQuadNotes(i);
+	{
+		// Add the highlights entity to the world
+		m_sprite = new GameEngine::Entity();
+		GameEngine::SpriteRenderComponent * rend = static_cast<GameEngine::SpriteRenderComponent*>(m_sprite->AddComponent<GameEngine::SpriteRenderComponent>());
+		rend->SetTexture(GameEngine::eTexture::Highlight);
+		rend->SetZLevel(1);
+		GameEngine::GameEngineMain::GetInstance()->AddEntity(m_sprite);
+	}
 }
 
 RhythmLogicComponent::~RhythmLogicComponent() {
@@ -52,19 +56,26 @@ void RhythmLogicComponent::SpacePressed() {
 }
 
 void RhythmLogicComponent::Update() {
+	// Add the metronome if its not yet added but music has started
+	if (!m_metronome && ticker->started()) {
+		createMetronomeSprite();
+	}
 	// We know the bar reset if the ticker tick is less than the last tick
 	if (ticker->getCurrentBarTick() < lastTick) {
 		// Update the current bar as well
 		current++;
 		if (current >= 4) current = 0;
+		bars++;
 
 		// Update music based on current quad
 		if (current == 0) notes[2] = Game::MusicGenerator::instance().getBarOfMusic();
 		if (current == 1) notes[3] = Game::MusicGenerator::instance().getBarOfMusic();
 		if (current == 2) notes[0] = Game::MusicGenerator::instance().getBarOfMusic();
 		if (current == 3) notes[1] = Game::MusicGenerator::instance().getBarOfMusic();
-		for (int i = 0; i < 4; ++i) renderQuadNotes(i);
-		for (int i = 0; i < 4; ++i) beats[i] = Game::MusicNoteUtils::convertNotesToBeatTimes(notes[i], bpm);
+		if (bars < NUM_BARS_UNTIL_SWITCH) {
+			for (int i = 0; i < 4; ++i) renderQuadNotes(i);
+			for (int i = 0; i < 4; ++i) beats[i] = Game::MusicNoteUtils::convertNotesToBeatTimes(notes[i], bpm);
+		}
 	}
 	lastTick = ticker->getCurrentBarTick();
 
@@ -77,8 +88,7 @@ void RhythmLogicComponent::Update() {
 }
 
 void RhythmLogicComponent::OnAddToWorld() {
-	// Add renderable components of the notes to the engine
-	for (int i = 0; i < 4; ++i) renderQuadNotes(i);
+	
 }
 
 std::vector<Note*> RhythmLogicComponent::extractData() {
@@ -149,4 +159,19 @@ void RhythmLogicComponent::renderQuadNotes(int quad) {
 		// This should never happen...
 	} break;
 	}
+}
+
+void RhythmLogicComponent::createMetronomeSprite(){
+	// Create the metronome sprites
+	m_metronome = new GameEngine::Entity();
+	GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>(m_metronome->AddComponent<GameEngine::SpriteRenderComponent>());
+	render->SetTexture(GameEngine::eTexture::Metronome);
+	render->SetZLevel(3);
+	m_metronome->SetPos(sf::Vector2f(640.f, 600.f));
+	m_metronome->SetSize(sf::Vector2f(256.f, 128.f));
+
+	GameEngine::AnimationComponent* anim = static_cast<GameEngine::AnimationComponent*>(m_metronome->AddComponent <GameEngine::AnimationComponent>());
+	anim->PlayAnim(GameEngine::EAnimationId::Metronome);
+
+	GameEngine::GameEngineMain::GetInstance()->AddEntity(m_metronome);
 }

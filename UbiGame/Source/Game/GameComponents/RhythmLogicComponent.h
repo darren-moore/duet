@@ -30,12 +30,16 @@ private:
 	std::vector<GameEngine::Entity*> entities[4];
 	int current;
 	int bpm;
+	int bars;
 
 	float lastTick;
 
 	float DistanceToNearestNote(float secs);
 	void renderQuadNotes(int quad);
+	void createMetronomeSprite();
 
 	// Reference to the highlight sprite entity
 	GameEngine::Entity * m_sprite;
+	// Reference to the metrenome sprite entity
+	GameEngine::Entity * m_metronome;
 };

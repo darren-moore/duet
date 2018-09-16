@@ -148,7 +148,6 @@
     <ClCompile Include="Source\Game\GameComponents\NoteRenderComponent.cpp" />
     <ClCompile Include="Source\GameEngine\Util\CameraManager.cpp" />
     <ClCompile Include="Source\Game\GameComponents\PhysicsIntegratorComponent.cpp" />
-    <ClCompile Include="Source\Game\GameComponents\PlayerSoundComponent.cpp" />
     <ClCompile Include="Source\GameEngine\EntitySystem\Components\ParticleComponent.cpp" />
     <ClCompile Include="Source\GameEngine\EntitySystem\Components\ParticleEmitterComponent.cpp" />
     <ClCompile Include="Source\GameEngine\EntitySystem\Components\SoundComponent.cpp" />
@@ -162,7 +161,6 @@
     <ClCompile Include="Source\Game\GameComponents\StaffRenderComponent.cpp" />
     <ClCompile Include="Source\Game\GameComponents\TriggerColliderComponent.cpp" />
     <ClCompile Include="Source\Game\GameEntities\Controller.cpp" />
-    <ClCompile Include="Source\Game\GameComponents\PlayerMovementComponent.cpp" />
     <ClCompile Include="Source\Game\GameBoard.cpp" />
     <ClCompile Include="Source\GameEngine\EntitySystem\Components\RenderComponent.cpp" />
     <ClCompile Include="Source\GameEngine\EntitySystem\Component.cpp" />
@@ -185,7 +183,6 @@
     <ClInclude Include="Source\Game\GameComponents\NoteRenderComponent.h" />
     <ClInclude Include="Source\GameEngine\Util\CameraManager.h" />
     <ClInclude Include="Source\Game\GameComponents\PhysicsIntegratorComponent.h" />
-    <ClInclude Include="Source\Game\GameComponents\PlayerSoundComponent.h" />
     <ClInclude Include="Source\GameEngine\EntitySystem\Components\ParticleComponent.h" />
     <ClInclude Include="Source\GameEngine\EntitySystem\Components\ParticleEmitterComponent.h" />
     <ClInclude Include="Source\GameEngine\EntitySystem\Components\SoundComponent.h" />
@@ -200,7 +197,6 @@
     <ClInclude Include="Source\Game\GameComponents\TriggerColliderComponent.h" />
     <ClInclude Include="Source\Game\GameComponents\VelocityComponent.h" />
     <ClInclude Include="Source\Game\GameEntities\Controller.h" />
-    <ClInclude Include="Source\Game\GameComponents\PlayerMovementComponent.h" />
     <ClInclude Include="Source\Game\GameBoard.h" />
     <ClInclude Include="Source\GameEngine\EntitySystem\Components\RenderComponent.h" />
     <ClInclude Include="Source\GameEngine\EntitySystem\Component.h" />

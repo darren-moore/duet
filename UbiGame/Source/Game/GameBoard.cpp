@@ -4,7 +4,9 @@
 #include "GameEngine\GameEngineMain.h"
 #include "GameEngine\EntitySystem\Components\CollidableComponent.h"
 #include "GameEngine\EntitySystem\Components\SpriteRenderComponent.h"
+#include "GameEngine\EntitySystem\Components\AnimationComponent.h"
 #include "GameEngine\Util\CameraManager.h"
+#include "GameEngine\Util\AnimationManager.h"
 
 // Game includes
 #include "GameComponents/RhythmLogicComponent.h"

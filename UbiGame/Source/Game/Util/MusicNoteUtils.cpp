@@ -86,6 +86,8 @@ void MusicNoteUtils::assignStemTypes(vector<Note*> notes) {
 
 				endCheck = 0;
 			}
+
+			// To check if first beat in a group, ask: endCheck == noteLength.
 			else {
 				if (i<notes.size()-1 && notes[i + 1]->noteLength == 3 || notes[i]->noteLength == 3) {
 					notes[i]->stemType = Note::eStemType::halfStart; //in group

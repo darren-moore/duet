@@ -58,16 +58,16 @@ void DualLogicComponent::recieveData(std::vector<Note*> notes) {
 	// Refresh notes with collision component.
 	m_noteEntities = Game::MusicNoteUtils::prepareNoteEntities(notes, sf::Vector2f(notesPos, 200));
 
-	for (auto e : m_noteEntities) {
-		GameEngine::SpriteRenderComponent* rend = static_cast<GameEngine::SpriteRenderComponent*>(e->AddComponent<GameEngine::SpriteRenderComponent>());
-		rend->SetTexture(GameEngine::eTexture::Highlight);
-		rend->SetZLevel(1);
-		Game::VelocityComponent* v = static_cast<Game::VelocityComponent*>(e->AddComponent<Game::VelocityComponent>());
-		v->velocity = sf::Vector2f(-160, 0);
-		e->AddComponent<Game::AccelerationComponent>();
-		e->AddComponent<Game::PhysicsIntegratorComponent>();
-		Game::TriggerColliderComponent* col = static_cast<Game::TriggerColliderComponent*>(e->AddComponent<Game::TriggerColliderComponent>());
+	//for (auto e : m_noteEntities) {
+	//	GameEngine::SpriteRenderComponent* rend = static_cast<GameEngine::SpriteRenderComponent*>(e->AddComponent<GameEngine::SpriteRenderComponent>());
+	//	rend->SetTexture(GameEngine::eTexture::Highlight);
+	//	rend->SetZLevel(1);
+	//	Game::VelocityComponent* v = static_cast<Game::VelocityComponent*>(e->AddComponent<Game::VelocityComponent>());
+	//	v->velocity = sf::Vector2f(-160, 0);
+	//	e->AddComponent<Game::AccelerationComponent>();
+	//	e->AddComponent<Game::PhysicsIntegratorComponent>();
+	//	Game::TriggerColliderComponent* col = static_cast<Game::TriggerColliderComponent*>(e->AddComponent<Game::TriggerColliderComponent>());
 
-		GameEngine::GameEngineMain::GetInstance()->AddEntity(e);
-	}
+	//	GameEngine::GameEngineMain::GetInstance()->AddEntity(e);
+	//}
 }

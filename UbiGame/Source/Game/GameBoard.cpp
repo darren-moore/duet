@@ -65,7 +65,7 @@ void GameBoard::CreateBackground(Ticker * ticker) {
 		GameEngine::Entity* bgEntity = new GameEngine::Entity();
 		GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>(bgEntity->AddComponent<GameEngine::SpriteRenderComponent>());
 		render->SetTexture(GameEngine::eTexture::BG);
-		render->SetZLevel(0);
+		render->SetZLevel(-10);
 		bgEntity->SetPos(sf::Vector2f(640.f, 360.f));
 		bgEntity->SetSize(sf::Vector2f(1280.f, 720.f));
 		GameEngine::GameEngineMain::GetInstance()->AddEntity(bgEntity);
@@ -76,7 +76,7 @@ void GameBoard::CreateBackground(Ticker * ticker) {
 		GameEngine::Entity* cloud = new GameEngine::Entity();
 		GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>(cloud->AddComponent<GameEngine::SpriteRenderComponent>());
 		render->SetTexture(GameEngine::eTexture::Cloud);
-		render->SetZLevel(1);
+		render->SetZLevel(-2);
 		cloud->SetPos(sf::Vector2f(640.f, 400.f));
 		cloud->SetSize(sf::Vector2f(1500.f, 720.f));
 		// Add a circular move component to the cloud
@@ -92,7 +92,7 @@ void GameBoard::CreateBackground(Ticker * ticker) {
 		GameEngine::Entity* cloud = new GameEngine::Entity();
 		GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>(cloud->AddComponent<GameEngine::SpriteRenderComponent>());
 		render->SetTexture(GameEngine::eTexture::Cloud);
-		render->SetZLevel(1);
+		render->SetZLevel(-1);
 		cloud->SetPos(sf::Vector2f(640.f, 360.f));
 		cloud->SetSize(sf::Vector2f(1500.f, 720.f));
 		// Add a circular move component to the cloud
